@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "435512445884",
+    "project_id": "projethematiqueoff",
+    "storage_bucket": "projethematiqueoff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435512445884:android:b0b528bfd41e254019b9b9",
+        "android_client_info": {
+          "package_name": "com.capou.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "435512445884-52b6vuc937m8nbtf0vsnbsq255gdveoq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-0Tj25bRJ6ueCm6nZvIKtqkrQGBeALH8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "435512445884-52b6vuc937m8nbtf0vsnbsq255gdveoq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
