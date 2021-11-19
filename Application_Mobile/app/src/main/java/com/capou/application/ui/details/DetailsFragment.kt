@@ -59,7 +59,6 @@ class DetailsFragment : Fragment {
             detail.text = it
         })
 
-        execute()
 
         Toast.makeText(context,this.customerName,Toast.LENGTH_LONG).show();
         return root
@@ -69,32 +68,5 @@ class DetailsFragment : Fragment {
         super.onDestroyView()
         _binding = null
     }
-
-    fun execute() {
-           try {
-               val call =  Api.getDetailsProducts().getDetailsProduct("")
-                   call.enqueue( object : Callback<DetailsRoom> {
-                       override fun onResponse(call: Call<DetailsRoom>, response: Response<DetailsRoom>?) {
-
-                           if(response?.body() != null)
-                             //  recyclerAdapter.setMovieListItems(response.body()!!)
-                                 Log.d("Details products: ",response.body().toString());
-                       }
-
-                       override fun onFailure(call: Call<DetailsRoom>, t: Throwable?) {
-                            Log.d("Details pro","fail to ")
-                       }
-                   })
-
-
-               // val data = call.isSuccessful
-           //    Log.d("Details product",data.toString());
-
-           }
-           catch (e:Exception){
-                Log.d("Details product",e.message.toString())
-           }
-
-       }
 
 }
