@@ -6,6 +6,12 @@ data class DetailsRoom(
     @SerializedName("fat")
     val fat: String,
 )
+
+
+data class DetailsProduct(
+    val images: String,
+    val  nom: String
+)
 /*data class Info(
 
 )*/
