@@ -22,4 +22,10 @@
         android:name="com.capou.application.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_product"
+        android:name="com.capou.application.ui.aliments.fragments.HomeFragmentAliment"
+        android:label="@string/title_aliment"
+        tools:layout="@layout/fragment_home_aliment" />
 </navigation>
