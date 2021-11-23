@@ -10,8 +10,17 @@ data class DetailsRoom(
 
 data class DetailsProduct(
     val images: String,
-    val  nom: String
+    val  nom: String,
+    val saison : Array<String>
 )
-/*data class Info(
 
-)*/
+
+data class Info(
+    val images: String,
+    val  nom: String,
+    val saison : List<Season>
+)
+
+data class Season(
+    val saison: String
+)
