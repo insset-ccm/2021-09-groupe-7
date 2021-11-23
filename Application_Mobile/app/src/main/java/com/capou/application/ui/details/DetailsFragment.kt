@@ -36,7 +36,8 @@ class DetailsFragment : Fragment {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    val data = Firebase.database.reference
+    val data = Firebase.database.getReference("aliments")
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,13 +49,6 @@ class DetailsFragment : Fragment {
 
         _binding = FragmentDetailsBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        /*context?.let {
-            Glide.with(it)
-                .load("https://cdn.pixabay.com/photo/2016/03/26/16/44/tomatoes-1280859_960_720.jpg")
-                .into(binding.imageView)
-        }*/
-      //  binding.titleProduct.text = this.customerName;
 
         val detail: TextView = binding.detailProduct
         detailsViewModel.detail.observe(viewLifecycleOwner,{
@@ -74,24 +68,30 @@ class DetailsFragment : Fragment {
 
     override fun onStart() {
         super.onStart()
-        //val data = Firebase.database.reference
-        Log.d("Bonjour",data.toString())
-        //val issuccess = data.setValue("Bonjour").isSuccessful
-        // Log.d("Bon",issuccess.toString())
-      /*  data.setValue("H -")
-            .addOnSuccessListener {
-                Log.d("Bonj","yes")
 
-            }
-            .addOnFailureListener { ex : Exception ->
-                Log.d("TAG", ex.toString())
-
-            }
-    */
-        data.addValueEventListener(object: ValueEventListener {
+        data.child("0").addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 Log.d("Bon",snapshot.toString())
+
+                    snapshot.children.map { dataSnapshot ->
+                        Log.d("Detailts",dataSnapshot.key.toString()+" -- "+dataSnapshot.getValue().toString())
+                        when(dataSnapshot.key.toString().trim()){
+                            "images" -> { Glide.with(this@DetailsFragment).load(dataSnapshot.value.toString()).into(binding.imageView)}
+                            "nom" -> { binding.titleProduct.text = dataSnapshot.value.toString().uppercase()}
+                            "saison" -> {
+                                var message: String = "";
+                                for (season in dataSnapshot.children){
+                                    message = message +" - "+season.value.toString()
+
+                                }
+                                binding.detailProduct.text = message
+
+                            }
+                            else -> { Log.d("Det","Error") }
+                        }
+                    }
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -101,29 +101,6 @@ class DetailsFragment : Fragment {
 
         })
 
-        data.child("aliments").addValueEventListener(object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-               val list =  snapshot.getValue(DetailsProduct::class.java)
-                Log.d("Bonj",list.toString())
-            //  binding.titleProduct.text = list?.nom.toString()
-               /* Glide.with(context!!)
-                    .load(list?.images.toString())
-                    .into(binding.imageView)*/
-             /*  snapshot.children.map {
-
-                       Glide.with(context!!)
-                           .load(it.value.toString())
-                           .into(binding.imageView)
-
-               }*/
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-
-                Log.d("Bon", error.message)
-            }
-
-        })
     }
 
 }
