@@ -9,4 +9,18 @@
     <string name="button_sign_in">Se connecter</string>
     <string name="logout">Se déconnecter</string>
 
+    <!-- ajouter par sadio -->
+    <string name="home_page_title">A découvrir</string>
+    <string name="home_page_last_aliment_section">Aliments par saison </string>
+
+    <!-- Page de collection fait referance à nos aliment liké nous on la pas-->
+    <string name="collection_page_title">Ma collection</string>
+
+
+    <!-- aliment customise -->
+    <string name="item_aliment_name">Nom de l\'aliment</string>
+    <string name="item_aliment_description">Description de l\'aliment</string>
+    <string name="item_saison_name">Nom de la saison</string>
+    <string name="title_aliment">Aliment</string>
+
 </resources>
