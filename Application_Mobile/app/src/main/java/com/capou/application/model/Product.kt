@@ -13,3 +13,23 @@ data class ProductDetails(
     @SerializedName("benefits")
     val benefits: String
 )
+
+
+data class AlimentModel(
+    var nom:String,
+    var images: String,
+    var saison:HashMap<String,String>?
+)
+
+data class CommentModel(
+    var id:String,
+    var message:String,
+    var date:String,
+    var auteurs:String
+)
+
+data class UserModel(
+    var nom:String,
+    var prenom:String,
+    var type:String
+)

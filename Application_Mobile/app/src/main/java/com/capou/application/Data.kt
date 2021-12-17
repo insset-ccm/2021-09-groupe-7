@@ -1,18 +1,20 @@
 package com.capou.application
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.capou.application.api.Api
+import com.capou.application.api.DetailsProduct
 import com.capou.application.databinding.ActivityDataBinding
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class Data : AppCompatActivity() {
     private lateinit var binding :ActivityDataBinding
-
     val data = Firebase.database.reference
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,30 +26,21 @@ class Data : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Log.d("Bonjour",data.toString())
-        //val issuccess = data.setValue("Bonjour").isSuccessful
-        // Log.d("Bon",issuccess.toString())
-        data.setValue("Hello -")
-            .addOnSuccessListener {
-                Log.d("Bonj","yes")
+        Log.d("Informations:","start")
 
-            }
-            .addOnFailureListener { ex : Exception ->
-                Log.d("TAG", ex.toString())
-
+        // add the parameter inside hthe getDetails("banana")
+        Api.getDetailsProducts().getDetails("apple").enqueue(object : Callback<DetailsProduct?> {
+            override fun onResponse(
+                call: Call<DetailsProduct?>,
+                response: Response<DetailsProduct?>
+            ) {
+                Log.d("Informations: ",response.body().toString())
             }
 
-        data.addValueEventListener(object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-
-                Log.d("Bon",snapshot.toString())
+            override fun onFailure(call: Call<DetailsProduct?>, t: Throwable) {
+                Log.d("Error:",t.message.toString())
             }
-
-            override fun onCancelled(error: DatabaseError) {
-
-                Log.d("Bon", error.message)
-            }
-
         })
+
     }
 }

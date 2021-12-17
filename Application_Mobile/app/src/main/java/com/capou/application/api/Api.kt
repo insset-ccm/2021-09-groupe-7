@@ -8,7 +8,7 @@ object Api {
     // Call the api
 
     private val retrofit: Retrofit = Retrofit.Builder()
-        .baseUrl("https://www.fruityvice.com/api/fruit/banana")
+        .baseUrl("https://www.fruityvice.com/api/fruit/")
         .addConverterFactory(GsonConverterFactory.create(GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()))
         .build()
 
