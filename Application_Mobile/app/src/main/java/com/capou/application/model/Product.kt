@@ -30,5 +30,6 @@ data class CommentModel(
 
 data class UserModel(
     var nom:String,
-    var prenom:String
+    var prenom:String,
+    var type:String
 )
