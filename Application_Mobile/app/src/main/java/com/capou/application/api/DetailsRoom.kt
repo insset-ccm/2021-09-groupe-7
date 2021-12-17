@@ -1,26 +1,47 @@
 package com.capou.application.api
 
+import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class DetailsRoom(
-    @SerializedName("fat")
-    val fat: String,
-)
+
 
 
 data class DetailsProduct(
-    val images: String,
-    val  nom: String,
-    val saison : Array<String>
+    @Expose
+    @SerializedName("name")
+    val name: String,
+
+    @Expose
+    @SerializedName("family")
+    val family:String,
+
+    @Expose
+    @SerializedName("order")
+    val order:String,
+
+    @Expose
+    @SerializedName("nutritions")
+    val nutritions : Nutrition
 )
 
+data class Nutrition(
+    @Expose
+    @SerializedName("carbohydrates")
+    val carbohydrates: String,
 
-data class Info(
-    val images: String,
-    val  nom: String,
-    val saison : List<Season>
-)
+    @Expose
+    @SerializedName("protein")
+    val protein:String,
 
-data class Season(
-    val saison: String
+    @Expose
+    @SerializedName("calories")
+    val calories:String,
+
+    @Expose
+    @SerializedName("fat")
+    val fat:String,
+
+    @Expose
+    @SerializedName("sugar")
+    val sugar:String
 )

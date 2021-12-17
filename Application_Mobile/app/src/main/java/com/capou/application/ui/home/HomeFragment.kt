@@ -44,8 +44,8 @@ class HomeFragment : Fragment() {
             addToBackStack(null)
         }*/
 
-      /*  binding.startDetail.setOnClickListener {
-           val fragment:Fragment = DetailsFragment("tomate");
+      /*  binding.starDetails.setOnClickListener {
+           val fragment:Fragment = DetailsFragment("tomate","defautl");
 
 
             //getFragmentManager
@@ -56,7 +56,7 @@ class HomeFragment : Fragment() {
                 addToBackStack(null)
             }*/
             val fragmentManager : FragmentManager = parentFragmentManager
-           fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_activity_main, fragment).commit()
+            fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_activity_main, fragment).commit()
 
         }*/
         return root

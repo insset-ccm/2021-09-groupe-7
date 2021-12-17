@@ -1,46 +1,82 @@
-package com.capou.application.ui.aliments.adapter
+package com.capou.application.comments
 
-import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.capou.application.R
-import com.capou.application.ui.aliments.modal.AlimentModal
+import com.bumptech.glide.Glide
+import com.capou.application.databinding.ItemCommentLayoutBinding
+import com.capou.application.databinding.ItemVerticalAlimentBinding
+import com.capou.application.model.AlimentModel
+import com.capou.application.model.CommentModel
 
-class AlimentAdapter(
-    private val alimentList: ArrayList<AlimentModal>,
-    private val layoutId: Int
-
-) : RecyclerView.Adapter<AlimentAdapter.ViewHolder>(){
-
-
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val alimentImage = view.findViewById<ImageView>(R.id.image_item)
-        val alimentName : TextView? = view.findViewById(R.id.name_item)
-        val saison : TextView? = view.findViewById(R.id.saison_item)
-
+val diffUtilsAliment = object : DiffUtil.ItemCallback<AlimentModel>() {
+    override fun areItemsTheSame(oldItem: AlimentModel, newItem: AlimentModel): Boolean {
+        return oldItem == newItem
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater
-            .from(parent.context)
-            .inflate(layoutId, parent, false)
 
-        return ViewHolder(view)
+    override fun areContentsTheSame(oldItem: AlimentModel, newItem: AlimentModel): Boolean {
+        return oldItem == newItem
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currentAliment = alimentList[position]
 
-        //utiliser glide pour recuperer l'image à partir de son lien -> composant
-        //Glide.with(context).load(Uri.parse(currentAliment.imageUrl)).into(holder.alimentImage)
-        //mettre à jour le nom
-        holder.alimentName?.text = currentAliment.name
-        //  saison
-        holder.saison?.text = currentAliment.saison
-    }
-    override fun getItemCount(): Int = alimentList.size
 }
+
+class AlimentViewHolder(
+    val binding: ItemVerticalAlimentBinding,
+    onItemClick: (objectDataSample: AlimentModel, view: View) -> Unit
+) : RecyclerView.ViewHolder(binding.root) {
+
+
+    private lateinit var ui: AlimentModel
+
+    init {
+        binding.root.setOnClickListener {
+            onItemClick(ui, itemView)
+        }
+
+    }
+
+
+    fun bind(chuckNorrisUi: AlimentModel) {
+        ui = chuckNorrisUi
+
+
+         Glide.with(itemView.context)
+             .load(chuckNorrisUi.images)
+             .into(binding.imageItem)
+
+        binding.nameItem.text = chuckNorrisUi.nom
+
+
+
+
+    }
+}
+
+class AlimentAdapter(private val onItemClick: (quoteUi: AlimentModel, view: View) -> Unit) : ListAdapter<AlimentModel, AlimentViewHolder>(
+    diffUtilsAliment) {
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlimentViewHolder {
+        return AlimentViewHolder(
+            ItemVerticalAlimentBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            ),onItemClick
+        )
+    }
+
+
+    override fun onBindViewHolder(holder: AlimentViewHolder, position: Int) {
+        holder.bind(getItem(position))
+    }
+}
+
+
+
