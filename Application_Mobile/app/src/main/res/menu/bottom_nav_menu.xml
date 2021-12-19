@@ -20,5 +20,18 @@
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="@string/title_dashboard" />
 
+    <item
+        android:id="@+id/navigation_home_maraicher"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home_maraicher" />
 
+    <item
+        android:id="@+id/navigation_list_aliment_maraicher"
+        android:icon="@drawable/ic_baseline_maraicher_dining_24"
+        android:title="@string/title_list_aliment_maraicher" />
+
+    <!--item
+        android:id="@+id/navigation_maraicher_profile"
+        android:icon="@drawable/ic_baseline_account_circle_24"
+        android:title="@string/title_maraicher_profile" /-->
 </menu>
