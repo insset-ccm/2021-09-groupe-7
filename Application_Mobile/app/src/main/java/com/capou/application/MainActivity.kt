@@ -45,17 +45,21 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_product, R.id.navigation_notifications
+                R.id.navigation_home, R.id.navigation_product, R.id.navigation_detail
             )
         )
 
         viewModel.getUserInfo().observe(this,{
             Log.d("Details: ",it.toString())
             if(it.toString()=="utilisateur"){
-              //  navView.menu.removeItem(R.id.navigation_product)
-              //  navView.menu.removeItem(R.id.navigation_dashboard)
+                navView.menu.removeItem(R.id.navigation_home_maraicher)
+                navView.menu.removeItem(R.id.navigation_list_aliment_maraicher)
+                //navView.menu.removeItem(R.id.navigation_maraicher_profile)
             }
             else{
+                navView.menu.removeItem(R.id.navigation_home)
+                navView.menu.removeItem(R.id.navigation_product)
+                navView.menu.removeItem(R.id.navigation_dashboard)
 
             }
         })

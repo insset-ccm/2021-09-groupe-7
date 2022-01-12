@@ -17,16 +17,11 @@
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.capou.application.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
 
     <fragment
         android:id="@+id/navigation_detail"
         android:name="com.capou.application.ui.details.DetailsFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_detail"
         tools:layout="@layout/fragment_details" />
 
 
@@ -35,4 +30,22 @@
         android:name="com.capou.application.ui.aliments.fragments.HomeFragmentAliment"
         android:label="@string/title_aliment"
         tools:layout="@layout/fragment_home_aliment" />
+
+    <fragment
+        android:id="@+id/navigation_home_maraicher"
+        android:name="com.capou.application.ui.maraicher.homeMaraicher.MaraicherHomeFragment"
+        android:label="@string/title_home_maraicher"
+        tools:layout="@layout/fragment_home_maraicher" />
+
+    <fragment
+        android:id="@+id/navigation_list_aliment_maraicher"
+        android:name="com.capou.application.ui.maraicher.listAlimentMaraicher.MaraicherListAlimentFragment"
+        android:label="@string/title_list_aliment_maraicher"
+        tools:layout="@layout/fragment_list_aliment_maraicher" />
+
+    <fragment
+        android:id="@+id/navigation_maraicher_profile"
+        android:name="com.capou.application.ui.maraicher.profileMaraicher.MaraicherProfileFragment"
+        android:label="@string/title_maraicher_profile"
+        tools:layout="@layout/fragment_maraicher_profile" />
 </navigation>

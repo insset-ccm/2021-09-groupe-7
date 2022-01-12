@@ -1,4 +1,4 @@
-package com.capou.application.ui.notifications
+package com.capou.application.ui.maraicher.profileMaraicher
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,13 +8,12 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.capou.application.R
-import com.capou.application.databinding.FragmentNotificationsBinding
+import com.capou.application.databinding.FragmentMaraicherProfileBinding
 
-class NotificationsFragment : Fragment() {
+class MaraicherProfileFragment : Fragment() {
 
-    private lateinit var notificationsViewModel: NotificationsViewModel
-    private var _binding: FragmentNotificationsBinding? = null
+    private lateinit var maraicherProfileViewModel: MaraicherProfileViewModel
+    private var _binding: FragmentMaraicherProfileBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -25,14 +24,14 @@ class NotificationsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+        maraicherProfileViewModel =
+            ViewModelProvider(this).get(MaraicherProfileViewModel::class.java)
 
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        _binding = FragmentMaraicherProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
+        val textView: TextView = binding.textMaraicherProfile
+        maraicherProfileViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

@@ -1,13 +1,14 @@
 <resources>
     <string name="app_name">application</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_dashboard">Recomandation</string>
     <string name="title_sign_in">Connexion</string>
     <string name="title_sign_up">Inscription</string>
     <string name="button_sign_up">S\'inscrire</string>
     <string name="button_sign_in">Se connecter</string>
     <string name="logout">Se déconnecter</string>
+
+
 
     <!-- ajouter par sadio -->
     <string name="home_page_title">A découvrir</string>
@@ -22,5 +23,11 @@
     <string name="item_aliment_description">Description de l\'aliment</string>
     <string name="item_saison_name">Nom de la saison</string>
     <string name="title_aliment">Aliment</string>
+    <string name="title_detail">Detail </string>
+
+    <!-- Maraicher -->
+    <string name="title_maraicher_profile">Profile </string>
+    <string name="title_list_aliment_maraicher">Maraicher </string>
+    <string name="title_home_maraicher">Dashboard</string>
 
 </resources>

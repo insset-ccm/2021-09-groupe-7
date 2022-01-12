@@ -1,15 +1,14 @@
-package com.capou.application.ui.notifications
+package com.capou.application.ui.maraicher.profileMaraicher
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.capou.application.ui.aliments.repository.AlimentRepository
 
-class NotificationsViewModel : ViewModel() {
+class MaraicherProfileViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
 
-         value = "This is notifications Fragment1"
+         value = "This is Profile Fragment1"
     }
     val text: LiveData<String> = _text
 }
