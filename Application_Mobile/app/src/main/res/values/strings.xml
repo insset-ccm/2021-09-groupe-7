@@ -24,6 +24,14 @@
     <string name="item_saison_name">Nom de la saison</string>
     <string name="title_aliment">Aliment</string>
     <string name="title_detail">Detail </string>
+    <string name="email">Adresse mail</string>
+    <string name="passowrd">Mot de passe</string>
+    <string name="message">Message</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ecrire">écrire</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <!-- Maraicher -->
     <string name="title_maraicher_profile">Profile </string>

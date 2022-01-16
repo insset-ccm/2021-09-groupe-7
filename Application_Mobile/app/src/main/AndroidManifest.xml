@@ -12,10 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Application">
+
         <activity
             android:name=".ui.authentification.SignUp"
             android:exported="true" />
-        <activity android:name=".comments.Comments" />
+
+        <activity android:name=".Data"/>
         <activity
             android:name=".ui.authentification.SignIn"
             android:exported="true"
@@ -26,14 +28,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Data"
-            android:exported="true"
-            android:theme="@style/MyAppBaseTheme" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
+        <activity android:name=".comments.Comments" />
     </application>
 
 </manifest>

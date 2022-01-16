@@ -57,7 +57,7 @@ class HomeFragmentAliment(): Fragment() {
         Log.d("Details: ",aliment.nom)
         val fragment:Fragment = DetailsFragment(aliment.nom,aliment.images);
         val fragmentManager : FragmentManager = parentFragmentManager
-        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_activity_main, fragment).commit()
+        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_activity_main, fragment).addToBackStack(DetailsFragment::class.java.name).commit()
     }
 
 }

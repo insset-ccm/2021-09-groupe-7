@@ -36,10 +36,10 @@ class SignUp : AppCompatActivity() {
     override fun onStart() {
         binding.signupButton.setOnClickListener {
             showMessage("Start to create the user")
-            var email = binding.signupEmail.text.toString()
-            var password = binding.signupPassword.text.toString()
-            var name = binding.signupLastname.text.toString()
-            var firstname = binding.signupFirstname.text.toString()
+            var email = binding.email.text.toString()
+            var password = binding.password.text.toString()
+            var name = binding.lastname.text.toString()
+            var firstname = binding.firstname.text.toString()
 
             viewModel.signUp(email,password,name,firstname,"user").observe(this,{
                 var checkSuccess = it.get("success")

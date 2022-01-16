@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-     <style name="MyAppBaseTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar" tools:ignore="ResourceCycle">
+    <style name="MyAppBaseTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar" tools:ignore="ResourceCycle">
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -44,5 +44,10 @@
     <!-- Creer le composant sout titre par default  -->
     <style name="TitleTextStyle" parent="SubtitleTextStyle">
         <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="ThemeOverlay.Application.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
     </style>
 </resources>

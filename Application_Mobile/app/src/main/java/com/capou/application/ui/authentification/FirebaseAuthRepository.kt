@@ -27,6 +27,7 @@ class FirebaseAuthRepository {
         this._authentification.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
+
                     // Sign in success, update UI with the signed-in user's information
                    // var iden = _database.child("utilisaters").push().key.toString()
 
@@ -57,10 +58,11 @@ class FirebaseAuthRepository {
                     infos.put("success",task.isSuccessful)
                    this._dataSignIn.postValue(infos)
             }
+        Log.d("Debug","${this._authentification}")
     }
 
     fun getUserInfo(){
-        Log.d("TAG","info")
+        Log.d("TAG","${this._authentification.currentUser}")
 
         this._database.child(this._authentification.currentUser?.uid.toString()).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -71,7 +73,8 @@ class FirebaseAuthRepository {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+             //   TODO("Not yet implemented")
+                Log.d("error",error.message)
             }
         })
     }

@@ -42,7 +42,7 @@ class ChuckNorrisQuoteViewHolder(
     fun bind(chuckNorrisUi: CommentModel) {
         ui = chuckNorrisUi
 
-        binding.auteur.text = ui.auteurs
+        binding.auteur.text = ui.auteur
         binding.message.text = ui.message
        /* Glide.with(itemView.context)
             .load(chuckNorrisUi.logo)
