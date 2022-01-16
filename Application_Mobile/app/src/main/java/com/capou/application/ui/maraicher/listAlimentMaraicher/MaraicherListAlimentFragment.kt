@@ -32,7 +32,7 @@ class MaraicherListAlimentFragment : Fragment() {
         _binding = FragmentListAlimentMaraicherBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textListAlimentMaraicher
+       // val textView: TextView = binding.textListAlimentMaraicher
 
         binding.registerBtn.setOnClickListener {
 
