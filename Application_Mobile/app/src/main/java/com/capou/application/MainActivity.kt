@@ -51,7 +51,8 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.getUserInfo().observe(this,{
             Log.d("Details: ",it.toString())
-            if(it.toString()=="utilisateur"){
+            val getType :String? ="utilisateur"
+            if(it.toString()==getType){
                 navView.menu.removeItem(R.id.navigation_home_maraicher)
                 navView.menu.removeItem(R.id.navigation_list_aliment_maraicher)
                 //navView.menu.removeItem(R.id.navigation_maraicher_profile)
@@ -70,7 +71,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val logoutMenu =  menuInflater.inflate(R.menu.logout_menu, menu)
+        menuInflater.inflate(R.menu.logout_menu, menu)
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -78,7 +79,6 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.logout -> {
                 // Action goes here
-                Log.d(TAG,"Deconnexion");
                 Toast.makeText(applicationContext,""+ authentification.signOut(),Toast.LENGTH_LONG).show()
                 Log.d(TAG, authentification.currentUser.toString()+""+ authentification.currentUser?.email);
                 authentification.signOut();

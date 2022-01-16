@@ -29,7 +29,7 @@ class SignIn : AppCompatActivity() {
         setContentView(binding.root);
 
         viewModel = ViewModelProvider(this).get(FirebaseAuthViewModel::class.java)
-        val sign_in_email = binding.signinEmail.text.toString();
+        val sign_in_email = binding.email.text.toString();
 
 
 
@@ -43,18 +43,19 @@ class SignIn : AppCompatActivity() {
     override fun onStart(){
            super.onStart()
         binding.signinButton.setOnClickListener() {
-            var email = binding.signinEmail.text.toString()
-            var password = binding.signinPassword.text.toString()
-            viewModel.signIn(email,password).observe(this,{
+            var email = binding.email.text.toString()
+            var password = binding.password.text.toString()
+           viewModel.signIn(email,password).observe(this,{
 
-                var checkSuccess = it.get("success")
-                if(checkSuccess == true){
-                val intent = Intent(applicationContext,MainActivity::class.java)
-                startActivity(intent)
-                }
-            })
-        };
+               var checkSuccess = it.get("success")
+               if(checkSuccess == true) {
+                   val intent = Intent(applicationContext, MainActivity::class.java)
+                   startActivity(intent)
+               }
+           })
+        }
+    }
 
 
     }
-}
+//}

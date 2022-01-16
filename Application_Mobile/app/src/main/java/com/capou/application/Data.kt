@@ -3,6 +3,7 @@ package com.capou.application
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import com.capou.application.api.Api
 import com.capou.application.api.DetailsProduct
@@ -23,13 +24,21 @@ class Data : AppCompatActivity() {
         setContentView(binding.root)
     }
 
+ /*  override fun getSupportActionBar(): ActionBar? {
+        super.getSupportActionBar().setDisplayHomeAsUpEnabled(true)
+        return super.getSupportActionBar()
+    }*/
 
     override fun onStart() {
         super.onStart()
         Log.d("Informations:","start")
-
+       // supportActionBar
+        actionBar?.setTitle(R.string.message)
+        actionBar?.setDisplayHomeAsUpEnabled(true)
+        actionBar?.setDisplayShowHomeEnabled(true)
+        //actionBar?.
         // add the parameter inside hthe getDetails("banana")
-        Api.getDetailsProducts().getDetails("apple").enqueue(object : Callback<DetailsProduct?> {
+       /* Api.getDetailsProducts().getDetails("apple").enqueue(object : Callback<DetailsProduct?> {
             override fun onResponse(
                 call: Call<DetailsProduct?>,
                 response: Response<DetailsProduct?>
@@ -40,7 +49,7 @@ class Data : AppCompatActivity() {
             override fun onFailure(call: Call<DetailsProduct?>, t: Throwable) {
                 Log.d("Error:",t.message.toString())
             }
-        })
+        })*/
 
     }
 }

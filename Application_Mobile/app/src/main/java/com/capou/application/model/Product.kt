@@ -22,10 +22,9 @@ data class AlimentModel(
 )
 
 data class CommentModel(
-    var id:String,
     var message:String,
     var date:String,
-    var auteurs:String
+    var auteur:String
 )
 
 data class UserModel(
@@ -33,3 +32,8 @@ data class UserModel(
     var prenom:String,
     var type:String
 )
+
+data class Saison(
+    var nom:String
+)
+
