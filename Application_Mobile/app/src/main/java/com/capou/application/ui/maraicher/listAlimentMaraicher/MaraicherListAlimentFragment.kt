@@ -5,12 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.capou.application.databinding.FragmentListAlimentMaraicherBinding
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class MaraicherListAlimentFragment : Fragment() {
+
 
         private  lateinit var maraicherListAlimentViewModel: MaraicherListAlimentViewModel
         private var _binding: FragmentListAlimentMaraicherBinding? = null
@@ -29,9 +33,18 @@ class MaraicherListAlimentFragment : Fragment() {
         val root: View = binding.root
 
         val textView: TextView = binding.textListAlimentMaraicher
-        maraicherListAlimentViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+
+        binding.registerBtn.setOnClickListener {
+
+            val fr_name = binding.frName.text.toString()
+            val nom = binding.nom.text.toString()
+
+            maraicherListAlimentViewModel.saveAliment(fr_name, nom)
+
+            binding.frName.text.clear()
+            binding.nom.text.clear()
+        }
+
         return root
     }
 
