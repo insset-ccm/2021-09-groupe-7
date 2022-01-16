@@ -79,7 +79,6 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.logout -> {
                 // Action goes here
-                Log.d(TAG,"Deconnexion");
                 Toast.makeText(applicationContext,""+ authentification.signOut(),Toast.LENGTH_LONG).show()
                 Log.d(TAG, authentification.currentUser.toString()+""+ authentification.currentUser?.email);
                 authentification.signOut();
