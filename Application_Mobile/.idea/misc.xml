@@ -25,12 +25,15 @@
         <entry key="..\:/Users/Victoire/AndroidStudioProjects/Projetthematique/tp/2021-09-groupe-7/Application_Mobile/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/Victoire/AndroidStudioProjects/Projetthematique/tp/2021-09-groupe-7/Application_Mobile/app/src/main/res/menu/logout_menu.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/sadio/AndroidStudioProjects/PROJET THEMA/Projet Dev/2021-09-groupe-7/Application_Mobile/app/src/main/res/drawable/ic_baseline_maraicher_dining_24.xml" value="0.18489583333333334" />
+        <entry key="..\:/Users/sadio/AndroidStudioProjects/PROJET THEMA/Projet Dev/2021-09-groupe-7/Application_Mobile/app/src/main/res/drawable/input.xml" value="0.17314814814814813" />
         <entry key="..\:/Users/sadio/AndroidStudioProjects/PROJET THEMA/Projet Dev/2021-09-groupe-7/Application_Mobile/app/src/main/res/layout/activity_comments.xml" value="0.125" />
         <entry key="..\:/Users/sadio/AndroidStudioProjects/PROJET THEMA/Projet Dev/2021-09-groupe-7/Application_Mobile/app/src/main/res/layout/activity_data.xml" value="0.125" />
+        <entry key="..\:/Users/sadio/AndroidStudioProjects/PROJET THEMA/Projet Dev/2021-09-groupe-7/Application_Mobile/app/src/main/res/layout/activity_sign_in.xml" value="0.13994565217391305" />
         <entry key="..\:/Users/sadio/AndroidStudioProjects/PROJET THEMA/Projet Dev/2021-09-groupe-7/Application_Mobile/app/src/main/res/layout/activity_sign_up.xml" value="0.125" />
         <entry key="..\:/Users/sadio/AndroidStudioProjects/PROJET THEMA/Projet Dev/2021-09-groupe-7/Application_Mobile/app/src/main/res/layout/fragment_dashboard.xml" value="0.125" />
         <entry key="..\:/Users/sadio/AndroidStudioProjects/PROJET THEMA/Projet Dev/2021-09-groupe-7/Application_Mobile/app/src/main/res/layout/fragment_details.xml" value="0.125" />
         <entry key="..\:/Users/sadio/AndroidStudioProjects/PROJET THEMA/Projet Dev/2021-09-groupe-7/Application_Mobile/app/src/main/res/layout/fragment_home.xml" value="0.125" />
+        <entry key="..\:/Users/sadio/AndroidStudioProjects/PROJET THEMA/Projet Dev/2021-09-groupe-7/Application_Mobile/app/src/main/res/layout/fragment_home_aliment.xml" value="0.10914855072463768" />
         <entry key="..\:/Users/sadio/AndroidStudioProjects/PROJET THEMA/Projet Dev/2021-09-groupe-7/Application_Mobile/app/src/main/res/layout/fragment_home_maraicher.xml" value="0.1" />
         <entry key="..\:/Users/sadio/AndroidStudioProjects/PROJET THEMA/Projet Dev/2021-09-groupe-7/Application_Mobile/app/src/main/res/layout/fragment_list_aliment_maraicher.xml" value="0.125" />
         <entry key="..\:/Users/sadio/AndroidStudioProjects/PROJET THEMA/Projet Dev/2021-09-groupe-7/Application_Mobile/app/src/main/res/layout/fragment_maraicher_profile.xml" value="0.1" />
