@@ -15,4 +15,5 @@
     <color name="lightGray">#989CA0</color>
     <color name="green">#77D353</color>
     <color name="darhGreen">#5C9447</color>
+    <color name="background">#F0F4F3</color>
 </resources>
