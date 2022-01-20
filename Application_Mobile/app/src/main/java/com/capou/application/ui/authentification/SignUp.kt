@@ -4,6 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.capou.application.MainActivity
@@ -18,6 +21,7 @@ class SignUp : AppCompatActivity() {
 
     private lateinit var binding : ActivitySignUpBinding
     private lateinit var viewModel: FirebaseAuthViewModel
+    private var defaultType:String = "Utilisateur"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,23 +34,44 @@ class SignUp : AppCompatActivity() {
             val intent = Intent(applicationContext,SignIn::class.java);
             startActivity(intent);
         }
+        var list = arrayOf("Utilisateur","Maraîcher")
+        binding.signinPasswordC.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                val selectedItem = parent.getItemAtPosition(position).toString()
+                Log.d("Debug","${selectedItem}")
+                defaultType = selectedItem.toString()
+            } // to close the onItemSelected
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+
+            }
+        }
+        val array = ArrayAdapter(this, android.R.layout.simple_spinner_item, list)
+        array.setDropDownViewResource(android.R.layout.simple_spinner_item)
+        binding.signinPasswordC.adapter = array
 
     }
 
+
+
     override fun onStart() {
+
+
         binding.signupButton.setOnClickListener {
             showMessage("Start to create the user")
             var email = binding.email.text.toString()
             var password = binding.password.text.toString()
             var name = binding.lastname.text.toString()
             var firstname = binding.firstname.text.toString()
-
-            viewModel.signUp(email,password,name,firstname,"user").observe(this,{
+            Toast.makeText(applicationContext,"${defaultType}",Toast.LENGTH_LONG).show()
+            viewModel.signUp(email,password,name,firstname,defaultType).observe(this,{
                 var checkSuccess = it.get("success")
-                if(checkSuccess==true){
+                Log.d("Debug","${it.get("success")} ${it}")
+              //  if(checkSuccess==true){
+                    viewModel.createUser(name,firstname,defaultType)
                     val intent  = Intent(applicationContext,SignIn::class.java)
                     startActivity(intent)
-                }
+             //  }
             })
 
         }
