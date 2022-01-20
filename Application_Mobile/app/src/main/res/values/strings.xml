@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">application</string>
+    <string name="app_name">Bio Eat</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Recomandation</string>
     <string name="title_sign_in">Connexion</string>
@@ -37,5 +37,7 @@
     <string name="title_maraicher_profile">Profile </string>
     <string name="title_list_aliment_maraicher">Maraicher </string>
     <string name="title_home_maraicher">Dashboard</string>
+    <string name="message_to_create_account">Pas de compte. Inscrivez-vous</string>
+    <string name="have_account">Vous avez un compte?</string>
 
 </resources>

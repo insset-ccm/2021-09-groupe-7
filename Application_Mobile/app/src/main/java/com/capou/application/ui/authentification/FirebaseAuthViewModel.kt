@@ -17,6 +17,10 @@ class FirebaseAuthViewModel:ViewModel() {
         return getInfo()
     }
 
+    fun createUser(name:String, firstname:String, type:String):MutableLiveData<Boolean>{
+       return  repository.createUser(name,firstname,type)
+    }
+
      fun signIn(email: String,password: String):MutableLiveData<HashMap<String,Boolean>>{
         repository.signIn(email, password)
         return getInfo()

@@ -13,6 +13,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.*
 
 class FirebaseAuthRepository {
     private var _authentification: FirebaseAuth = Firebase.auth
@@ -21,38 +22,32 @@ class FirebaseAuthRepository {
     var _dataSignIn = MutableLiveData<HashMap<String,Boolean>>()
     var _userInfo = MutableLiveData<String?>()
     private var infos = hashMapOf<String,Boolean>()
+    var succees = MutableLiveData<Boolean>()
 
 
-     fun SignUp(email: String, password:String, name:String, firstname:String, type:String){
-        this._authentification.createUserWithEmailAndPassword(email, password)
+     fun SignUp(email: String, password:String, name:String, firstname:String, type:String) {
+       this._authentification.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-
+                    infos.put("success",true)
+                    this._dataSignIn.postValue(infos)
+                    //  async {   createUser(email,firstname,type) }
+                   // this._authentification.signOut()
                     // Sign in success, update UI with the signed-in user's information
-                   // var iden = _database.child("utilisaters").push().key.toString()
-
-                    val user = this._authentification.currentUser
-                    var id = user?.uid.toString()
-                    this._database.child(id).setValue(UserModel(name,firstname,type))
-                        .addOnSuccessListener { it
-                            infos.put("success",true)
-                            this._dataSignIn.postValue(infos)
-                        }
-                        .addOnFailureListener {
-                            infos.put("success",false)
-                            this._dataSignIn.postValue(infos)
-                        }
-                    // updateUI(user)
+                    // var iden = _database.child("utilisaters").push().key.toString()
                 }
             }
 
             .addOnFailureListener {
-
+            Log.d("Debug","${it.message}")
+                infos.put("success", false)
+                this._dataSignIn.postValue(infos)
             }
     }
 
 
-    fun signIn(email: String,password: String){
+
+    fun signIn(email: String,password: String) {
         this._authentification.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                     infos.put("success",task.isSuccessful)
@@ -78,4 +73,22 @@ class FirebaseAuthRepository {
             }
         })
     }
-}
+
+     fun createUser(name: String, firstname: String,type: String):MutableLiveData<Boolean> {
+        val user = this._authentification.currentUser
+        var id = user?.uid.toString()
+        Log.d("Debug","${id}")
+         this.succees.postValue(false)
+        this._database.child(id).setValue(UserModel(name,firstname,type))
+            .addOnSuccessListener { it
+               Log.d("Debug","<-- ${it}")
+                this.succees.postValue(true)
+            }
+            .addOnFailureListener {
+                Log.d("Debug","--> ${it.message}")
+            }
+        // updaeUI(user)
+         return this.succees
+        }
+
+    }
