@@ -18,8 +18,10 @@
             android:exported="true" />
 
         <activity android:name=".Data"/>
+        <activity android:name=".comments.Comments" />
+        <activity android:name=".ui.pickup_point.view.PickUpPoint"/>
         <activity
-            android:name=".ui.authentification.SignIn"
+            android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
@@ -30,10 +32,10 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.authentification.SignIn"
             android:exported="true"
             android:label="@string/app_name" />
-        <activity android:name=".comments.Comments" />
+
     </application>
 
 </manifest>

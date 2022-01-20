@@ -37,3 +37,12 @@ data class Saison(
     var nom:String
 )
 
+data class PickUpPoint(
+    var address:String?,
+    var listMaraicher: ArrayList<List<String>?>
+)
+
+data class Schedule(
+    var date:String
+)
+
