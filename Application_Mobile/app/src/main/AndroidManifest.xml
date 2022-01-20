@@ -21,7 +21,7 @@
         <activity android:name=".comments.Comments"
             android:label="Commentaires"/>
         <activity android:name=".ui.pickup_point.view.PickUpPoint"
-            android:label="Point de vente"/>
+            android:label="Point de ventes"/>
         <activity
             android:name=".ui.authentification.SignIn"
             android:exported="true"
