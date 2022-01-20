@@ -17,6 +17,7 @@ import com.capou.application.api.DetailsProduct
 import com.capou.application.api.Nutrition
 import com.capou.application.comments.Comments
 import com.capou.application.databinding.FragmentDetailsBinding
+import com.capou.application.ui.pickup_point.view.PickUpPoint
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -79,8 +80,8 @@ class DetailsFragment : Fragment {
         super.onStart()
 
         binding.Ajouter.setOnClickListener(View.OnClickListener {
-            val intent = Intent(context,Comments::class.java)
-
+           // val intent = Intent(context,Comments::class.java)
+            val intent = Intent(context,PickUpPoint::class.java)
             // change the value of the title
             intent.putExtra("title",this.customerName)
             startActivity(intent)

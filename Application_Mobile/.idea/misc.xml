@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+<<<<<<< main
         <entry key="..\:/Users/Victoire/AndroidStudioProjects/Projetthematique/tp/2021-09-groupe-7/Application_Mobile/app/src/main/res/drawable/background.xml" value="0.38333333333333336" />
         <entry key="..\:/Users/Victoire/AndroidStudioProjects/Projetthematique/tp/2021-09-groupe-7/Application_Mobile/app/src/main/res/layout/activity_comments.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/Victoire/AndroidStudioProjects/Projetthematique/tp/2021-09-groupe-7/Application_Mobile/app/src/main/res/layout/activity_data.xml" value="0.16666666666666666" />
@@ -43,13 +44,12 @@
         <entry key="..\:/Users/sadio/AndroidStudioProjects/PROJET THEMA/Projet Dev/2021-09-groupe-7/Application_Mobile/app/src/main/res/menu/bottom_nav_menu_maraicher.xml" value="0.16875" />
         <entry key="..\:/Users/sadio/AndroidStudioProjects/PROJET THEMA/Projet Dev/2021-09-groupe-7/Application_Mobile/app/src/main/res/menu/logout_menu.xml" value="0.16875" />
         <entry key="..\:/Users/sadio/AndroidStudioProjects/PROJET THEMA/Projet Dev/2021-09-groupe-7/Application_Mobile/app/src/main/res/menu/logout_menu_maraicher.xml" value="0.16875" />
+=======
+        <entry key="..\:/Users/Victoire/AndroidStudioProjects/Projetthematique/tp/2021-09-groupe-7/Application_Mobile/app/src/main/res/layout/pick_up_point_fragment.xml" value="0.1" />
+>>>>>>> feature: Add the pickup point
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/build/classes" />
-  </component>
-  <component name="ProjectType">
-    <option name="id" value="Android" />
-  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>
