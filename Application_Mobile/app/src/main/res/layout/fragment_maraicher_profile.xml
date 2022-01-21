@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".ui.maraicher.profileMaraicher.MaraicherProfileFragment">
 
-    <TextView
+    <!--TextView
         android:id="@+id/text_maraicher_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,8 +16,85 @@
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.125" /-->
+
+    <ImageView
+        android:id="@+id/item_photo_detail"
+        android:layout_width="177dp"
+        android:layout_height="175dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_baseline_perm_identity_24"
+        android:background="@drawable/circular_bordershape"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+         />
+
+    <TextView
+        android:id="@+id/text_maraicher_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ellipsize="marquee"
+        android:text="TextView"
+
+
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_photo_detail" />
+
+    <TextView
+        android:id="@+id/textViewFirstname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="92dp"
+        android:textColor="@color/black"
+        android:text="@string/title_profil_maraicher_firstname"
+        android:textAlignment="textEnd"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_photo_detail" />
+
+    <TextView
+        android:id="@+id/item_firstname"
+        android:layout_width="197dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="30sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textViewFirstname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewFirstname" />
+
+    <TextView
+        android:id="@+id/textViewLastname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="32dp"
+        android:textColor="@color/black"
+        android:text="@string/title_profil_maraicher_lastname"
+        android:textAlignment="textEnd"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFirstname" />
+
+    <TextView
+        android:id="@+id/item_lastname"
+        android:layout_width="197dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="30sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textViewLastname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewLastname" />
 </androidx.constraintlayout.widget.ConstraintLayout>

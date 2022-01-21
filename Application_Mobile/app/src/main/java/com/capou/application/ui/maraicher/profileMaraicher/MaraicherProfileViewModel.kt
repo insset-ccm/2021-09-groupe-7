@@ -8,7 +8,7 @@ class MaraicherProfileViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
 
-         value = "This is Profile Fragment1"
+         value = "User Profile"
     }
     val text: LiveData<String> = _text
 }
