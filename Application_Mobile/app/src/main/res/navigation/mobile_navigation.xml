@@ -48,4 +48,5 @@
         android:name="com.capou.application.ui.maraicher.profileMaraicher.MaraicherProfileFragment"
         android:label="@string/title_maraicher_profile"
         tools:layout="@layout/fragment_maraicher_profile" />
+
 </navigation>
