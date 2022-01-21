@@ -54,7 +54,7 @@ class Comments : AppCompatActivity() {
 
         binding.recyclerComment.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         binding.recyclerComment.adapter = adapter
-        Toast.makeText(applicationContext,"List comments",Toast.LENGTH_LONG).show()
+        //Toast.makeText(applicationContext,"List comments",Toast.LENGTH_LONG).show()
         var query = data.child("commentaire")
 
         query.addValueEventListener(object : ValueEventListener {
@@ -127,7 +127,7 @@ class Comments : AppCompatActivity() {
 
     private fun onItemClick(restaurant: CommentModel, view : View, type: String) {
         // view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-        Toast.makeText(this,restaurant.auteur+" "+restaurant.message,Toast.LENGTH_LONG).show()
+        //Toast.makeText(this,restaurant.auteur+" "+restaurant.message,Toast.LENGTH_LONG).show()
 
     }
 
@@ -138,7 +138,7 @@ class Comments : AppCompatActivity() {
             setPositiveButton("Ok",
                 DialogInterface.OnClickListener { dialog, id ->
                     //User clicked OK button
-                    Toast.makeText(applicationContext,"${id}",Toast.LENGTH_LONG).show()
+                   // Toast.makeText(applicationContext,"${id}",Toast.LENGTH_LONG).show()
                 })
             setNegativeButton("Cancel",
                 DialogInterface.OnClickListener { dialog, id ->

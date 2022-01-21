@@ -1,6 +1,8 @@
 package com.capou.application
 
+import android.app.AlertDialog
 import android.app.Application
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -52,14 +54,14 @@ class MainActivity : AppCompatActivity() {
         viewModel.getUserInfo().observe(this,{
             Log.d("Details: ",it.toString())
             val getType :String? ="utilisateur"
-            if(it.toString()==getType){
+            if(it.toString().lowercase()==getType){
                 navView.menu.removeItem(R.id.navigation_home_maraicher)
                 navView.menu.removeItem(R.id.navigation_list_aliment_maraicher)
                 //navView.menu.removeItem(R.id.navigation_maraicher_profile)
             }
             else{
                 navView.menu.removeItem(R.id.navigation_home)
-                navView.menu.removeItem(R.id.navigation_product)
+               // navView.menu.removeItem(R.id.navigation_product)
                 navView.menu.removeItem(R.id.navigation_dashboard)
 
             }
@@ -79,12 +81,19 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.logout -> {
                 // Action goes here
-                Toast.makeText(applicationContext,""+ authentification.signOut(),Toast.LENGTH_LONG).show()
-                Log.d(TAG, authentification.currentUser.toString()+""+ authentification.currentUser?.email);
                 authentification.signOut();
-                Log.d(TAG, authentification.currentUser.toString()+""+ authentification.currentUser?.email);
                 val intent  = Intent(applicationContext,SignIn::class.java);
                 startActivity(intent);
+                true
+            }
+            R.id.about -> {
+                var alert = AlertDialog.Builder(this)
+                alert.setTitle(R.string.about)
+                alert.setMessage("Cette application a pour but d'inciter les utilisateurs à consommer des produits locaux et de saison ")
+                alert.setPositiveButton("Ok", DialogInterface.OnClickListener { dialog, which ->
+                    dialog.dismiss()
+                })
+                alert.show()
                 true
             }
             else -> super.onOptionsItemSelected(item)

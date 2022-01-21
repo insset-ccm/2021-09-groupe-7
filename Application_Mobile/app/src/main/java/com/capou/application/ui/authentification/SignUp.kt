@@ -46,8 +46,8 @@ class SignUp : AppCompatActivity() {
 
             }
         }
-        val array = ArrayAdapter(this, android.R.layout.simple_spinner_item, list)
-        array.setDropDownViewResource(android.R.layout.simple_spinner_item)
+        val array = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, list)
+        array.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
         binding.signinPasswordC.adapter = array
 
     }
@@ -63,7 +63,7 @@ class SignUp : AppCompatActivity() {
             var password = binding.password.text.toString()
             var name = binding.lastname.text.toString()
             var firstname = binding.firstname.text.toString()
-            Toast.makeText(applicationContext,"${defaultType}",Toast.LENGTH_LONG).show()
+           // Toast.makeText(applicationContext,"${defaultType}",Toast.LENGTH_LONG).show()
             viewModel.signUp(email,password,name,firstname,defaultType).observe(this,{
                 var checkSuccess = it.get("success")
                 Log.d("Debug","${it.get("success")} ${it}")
@@ -80,7 +80,7 @@ class SignUp : AppCompatActivity() {
 
 
     fun showMessage(message:String){
-        Toast.makeText(applicationContext,message,Toast.LENGTH_LONG).show();
+       // Toast.makeText(applicationContext,message,Toast.LENGTH_LONG).show();
     }
 
 

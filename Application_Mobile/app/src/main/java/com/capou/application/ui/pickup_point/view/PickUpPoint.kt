@@ -61,7 +61,7 @@ class PickUpPoint : AppCompatActivity() {
     private fun onItemClick(pickUpPoint: PickUpPoint, view : View) {
         // view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
         Log.d("Debugger","${pickUpPoint.listMaraicher}")
-        Toast.makeText(this,"${pickUpPoint}", Toast.LENGTH_LONG).show()
+        //Toast.makeText(this,"${pickUpPoint}", Toast.LENGTH_LONG).show()
     }
 
     override fun onBackPressed() {
