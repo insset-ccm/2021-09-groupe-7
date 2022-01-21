@@ -56,6 +56,7 @@ class MaraicherProfileFragment : Fragment() {
               Log.d("Id","${snapshot}")
               binding.itemFirstname.text = snapshot.child("nom").getValue(String::class.java)
               binding.itemLastname.text = snapshot.child("prenom").getValue(String::class.java)
+              binding.textMaraicherProfile.text = snapshot.child("type").getValue(String::class.java)
           }
 
           override fun onCancelled(error: DatabaseError) {

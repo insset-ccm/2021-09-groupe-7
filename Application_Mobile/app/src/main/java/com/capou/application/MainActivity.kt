@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
                 //navView.menu.removeItem(R.id.navigation_maraicher_profile)
             }
             else{
-                navView.menu.removeItem(R.id.navigation_home)
+               //navView.menu.removeItem(R.id.navigation_home)
                // navView.menu.removeItem(R.id.navigation_product)
                 navView.menu.removeItem(R.id.navigation_dashboard)
 
