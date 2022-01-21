@@ -6,21 +6,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.capou.application.Data
 import com.capou.application.api.Api
 import com.capou.application.api.DetailsProduct
-import com.capou.application.api.Nutrition
-import com.capou.application.comments.Comments
 import com.capou.application.databinding.FragmentDetailsBinding
 import com.capou.application.ui.pickup_point.view.PickUpPoint
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import retrofit2.Call
@@ -66,7 +59,7 @@ class DetailsFragment : Fragment {
          Glide.with(this).load(this.imageName).into(binding.imageView)
         binding.titleProduct.text = this.customerName
 
-        Toast.makeText(context,this.customerName,Toast.LENGTH_LONG).show();
+       // Toast.makeText(context,this.customerName,Toast.LENGTH_LONG).show();
         return root
     }
 

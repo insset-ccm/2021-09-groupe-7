@@ -7,7 +7,7 @@
     <string name="button_sign_up">S\'inscrire</string>
     <string name="button_sign_in">Se connecter</string>
     <string name="logout">Se déconnecter</string>
-
+    <string name="about">A propos</string>
 
 
     <!-- ajouter par sadio -->
@@ -39,5 +39,7 @@
     <string name="title_home_maraicher">Dashboard</string>
     <string name="message_to_create_account">Pas de compte. Inscrivez-vous</string>
     <string name="have_account">Vous avez un compte?</string>
+    <string name="select_pickup_point">Veuillez sélectionner un point de vente:</string>
+    <string name="add_product">Ajouter</string>
 
 </resources>
