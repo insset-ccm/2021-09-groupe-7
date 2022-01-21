@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -55,13 +56,14 @@ class AddProduct : Fragment {
 
             }
         }
-        val list = arrayOf("Default","Other","Bonjour")
+        val list = arrayOf("3 Rue Litré, Lille","5 Rue Voltaire, Saint-Quentin","24 Rue Alexandre Dumas, Nantes")
         val array = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, list)
         array.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
         _binding.pickupPoint.adapter = array
 
         _binding.addProduct.setOnClickListener {
             viewModel.addProduct(this.customerName)
+            Toast.makeText(this.context, "Produit Ajouté",Toast.LENGTH_LONG).show()
         }
         return _binding.root
     }
