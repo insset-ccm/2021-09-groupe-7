@@ -42,6 +42,7 @@ Actuellement notre application va se concentrer sur la France L’application ne
 Coût de notre Application :
 
 Dans notre situation actuelle, nous nous sommes orientés vers des technologies, outils gratuits. En fonction de l’évolution de notre projet, une migration et/ou mise à jour des services gratuits vers des services payants sera nécessaire.
-Diagramme de cas:
 
-Voir image (diagramme de cas)
+
+# Vidéo Demo 
+https://drive.google.com/drive/u/0/folders/1BuWZR-Qx7Tax4uP1tOzfZzZQAKPnHeJA
