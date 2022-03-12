@@ -66,6 +66,6 @@ dependencies {
     //Material Design
     implementation 'com.google.android.material:material:1.4.0'
 
-    //Google Maps
+    //Google Map
     implementation 'com.google.android.gms:play-services-maps:18.0.1'
 }

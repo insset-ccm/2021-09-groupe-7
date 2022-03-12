@@ -62,6 +62,11 @@ class HomeFragment : Fragment() {
         return root
     }
 
+    override fun onStart() {
+        super.onStart()
+        //val googleMap = childFragmentManager.
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

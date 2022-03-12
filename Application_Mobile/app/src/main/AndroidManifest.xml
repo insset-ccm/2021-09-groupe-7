@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.capou.application">
         <!--   Ajouter par sadio -->
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET"/>
 
 
@@ -12,12 +14,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Application">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="API_KEY"/>
 
         <activity
             android:name=".ui.authentification.SignUp"
             android:exported="true" />
 
         <activity android:name=".Data"/>
+
         <activity android:name=".comments.Comments"
             android:label="Commentaires"/>
         <activity android:name=".ui.pickup_point.view.PickUpPoint"
