@@ -25,8 +25,12 @@
                 android:id="@+id/pickupPoint_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 app:layout_constraintLeft_toLeftOf="@+id/constrain"
                 app:layout_constraintTop_toTopOf="@+id/constrain"
+                app:layout_constraintBottom_toBottomOf="@+id/constrain"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 tools:text="@tools:sample/full_names" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -2,11 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" >
 >
-
+<!--
+ app:showAsAction="ifRoom"
+ -->
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home_black_24dp"
-        app:showAsAction="ifRoom"
         android:title="@string/title_home" />
 
 
@@ -31,6 +32,10 @@
         android:id="@+id/navigation_home_maraicher"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/title_home_maraicher" /-->
+    <item
+        android:id="@+id/navigation_my_food"
+        android:icon="@drawable/ic_baseline_account_circle_24"
+        android:title="Mes Aliments" />
 
     <item
         android:id="@+id/navigation_maraicher_profile"

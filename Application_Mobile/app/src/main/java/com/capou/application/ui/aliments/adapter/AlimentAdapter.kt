@@ -1,6 +1,5 @@
 package com.capou.application.comments
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,10 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.capou.application.databinding.ItemCommentLayoutBinding
 import com.capou.application.databinding.ItemVerticalAlimentBinding
 import com.capou.application.model.AlimentModel
-import com.capou.application.model.CommentModel
 
 val diffUtilsAliment = object : DiffUtil.ItemCallback<AlimentModel>() {
     override fun areItemsTheSame(oldItem: AlimentModel, newItem: AlimentModel): Boolean {

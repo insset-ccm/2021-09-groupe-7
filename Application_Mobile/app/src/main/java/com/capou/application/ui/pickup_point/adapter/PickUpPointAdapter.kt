@@ -6,9 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.capou.application.databinding.ItemCommentLayoutBinding
 import com.capou.application.databinding.ItemPickUpPointBinding
-import com.capou.application.model.CommentModel
 import com.capou.application.model.PickUpPoint
 
 val diffUtils = object : DiffUtil.ItemCallback<PickUpPoint>() {
