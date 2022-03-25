@@ -59,20 +59,29 @@ class SignUp : AppCompatActivity() {
 
         binding.signupButton.setOnClickListener {
             showMessage("Start to create the user")
-            var email = binding.email.text.toString()
+          /*  var email = binding.email.text.toString()
             var password = binding.password.text.toString()
             var name = binding.lastname.text.toString()
-            var firstname = binding.firstname.text.toString()
+            var firstname = binding.firstname.text.toString()*/
+            var email = "email@email.com"
+            var password = "binding_test"
+            var name = "other"
+            var firstname = "String"
            // Toast.makeText(applicationContext,"${defaultType}",Toast.LENGTH_LONG).show()
-            viewModel.signUp(email,password,name,firstname,defaultType).observe(this,{
-                var checkSuccess = it.get("success")
-                Log.d("Debug","${it.get("success")} ${it}")
-              //  if(checkSuccess==true){
+            if(!email.isNullOrEmpty()
+                && !password.isNullOrEmpty()
+                && !name.isNullOrEmpty()
+                && !firstname.isNullOrEmpty()){
+                viewModel.signUp(email,password,name,firstname,"Utilisateur").observe(this,{
+                    var checkSuccess = it.get("success")
+                    Log.d("Debug","${it.get("success")} ${it}")
+                    //  if(checkSuccess==true){
                     viewModel.createUser(name,firstname,defaultType)
                     val intent  = Intent(applicationContext,SignIn::class.java)
-                    startActivity(intent)
-             //  }
-            })
+                    // startActivity(intent)
+                    //  }
+                })
+            }
 
         }
         super.onStart()

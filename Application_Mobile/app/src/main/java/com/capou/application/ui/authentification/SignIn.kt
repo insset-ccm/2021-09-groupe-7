@@ -45,14 +45,16 @@ class SignIn : AppCompatActivity() {
         binding.signinButton.setOnClickListener() {
             var email = binding.email.text.toString()
             var password = binding.password.text.toString()
-           viewModel.signIn(email,password).observe(this,{
+            if(!email.isNullOrEmpty() && !password.isNullOrEmpty()){
+                viewModel.signIn(email,password).observe(this,{
 
-               var checkSuccess = it.get("success")
-               if(checkSuccess == true) {
-                   val intent = Intent(applicationContext, MainActivity::class.java)
-                   startActivity(intent)
-               }
-           })
+                    var checkSuccess = it.get("success")
+                    if(checkSuccess == true) {
+                        val intent = Intent(applicationContext, MainActivity::class.java)
+                        startActivity(intent)
+                    }
+                })
+            }
         }
     }
 
