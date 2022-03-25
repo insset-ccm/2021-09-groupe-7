@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.capou.application.api.Api
 import com.capou.application.api.DetailsProduct
 import com.capou.application.databinding.FragmentDetailsBinding
+import com.capou.application.helper.FonctionHelper
 import com.capou.application.ui.pickup_point.view.PickUpPoint
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -57,7 +58,8 @@ class DetailsFragment : Fragment {
 
 
          Glide.with(this).load(this.imageName).into(binding.imageView)
-        binding.titleProduct.text = this.customerName
+        var newText = FonctionHelper().helpterText(this.customerName)
+        binding.titleProduct.text = newText
 
        // Toast.makeText(context,this.customerName,Toast.LENGTH_LONG).show();
         return root

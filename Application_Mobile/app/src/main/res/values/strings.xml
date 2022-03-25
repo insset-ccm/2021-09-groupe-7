@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Bio Eat</string>
-    <string name="title_home">Home</string>
+    <string name="title_home">Accueil</string>
     <string name="title_dashboard">Recomandation</string>
     <string name="title_sign_in">Connexion</string>
     <string name="title_sign_up">Inscription</string>
@@ -22,7 +22,8 @@
     <string name="item_aliment_name">Nom de l\'aliment</string>
     <string name="item_aliment_description">Description de l\'aliment</string>
     <string name="item_saison_name">Nom de la saison</string>
-    <string name="title_aliment">Aliment</string>
+    <string name="title_aliment">Aliments</string>
+    <string name="title_mes_aliment">Mes Aliments</string>
     <string name="title_detail">Detail </string>
     <string name="email">Adresse mail</string>
     <string name="passowrd">Mot de passe</string>
@@ -34,7 +35,7 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <!-- Maraicher -->
-    <string name="title_maraicher_profile">Profile </string>
+    <string name="title_maraicher_profile">Profil </string>
     <string name="title_list_aliment_maraicher">Maraicher </string>
     <string name="title_home_maraicher">Dashboard</string>
     <string name="message_to_create_account">Pas de compte. Inscrivez-vous</string>

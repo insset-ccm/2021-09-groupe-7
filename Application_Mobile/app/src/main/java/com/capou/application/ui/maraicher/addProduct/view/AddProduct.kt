@@ -63,7 +63,7 @@ class AddProduct : Fragment {
 
         _binding.addProduct.setOnClickListener {
             viewModel.addProduct(this.customerName)
-            Toast.makeText(this.context, "Produit Ajouté",Toast.LENGTH_LONG).show()
+          //  Toast.makeText(this.context, "Produit Ajouté",Toast.LENGTH_LONG).show()
         }
         return _binding.root
     }

@@ -49,4 +49,10 @@
         android:label="@string/title_maraicher_profile"
         tools:layout="@layout/fragment_maraicher_profile" />
 
+    <fragment
+        android:id="@+id/navigation_my_food"
+        android:name="com.capou.application.ui.my_food.view.MyFoodFragment"
+        android:label="Mes Aliments"
+        tools:layout="@layout/my_food_fragment" />
+
 </navigation>
