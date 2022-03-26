@@ -6,7 +6,21 @@
     android:layout_height="match_parent"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    tools:context=".ui.authentification.SignIn">
+    tools:context=".ui.authentification.view.SignIn">
+    <TextView
+        android:id="@+id/signin_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/title_sign_up"
+        android:textAlignment="center"
+        style="@style/TextAppearance.MaterialComponents.Headline4"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.095"
+        tools:layout_editor_absoluteX="10dp" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/signup_lastname"
         android:layout_width="match_parent"
@@ -103,6 +117,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/have_account"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/signupButton"
         app:layout_constraintBaseline_toBaselineOf="@id/signupSignin" />

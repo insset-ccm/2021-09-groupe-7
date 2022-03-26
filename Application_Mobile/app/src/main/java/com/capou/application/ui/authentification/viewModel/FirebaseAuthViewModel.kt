@@ -1,8 +1,8 @@
-package com.capou.application.ui.authentification
+package com.capou.application.ui.authentification.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.capou.application.model.UserModel
+import com.capou.application.ui.authentification.repository.FirebaseAuthRepository
 
 class FirebaseAuthViewModel:ViewModel() {
 

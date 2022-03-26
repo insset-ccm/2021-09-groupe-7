@@ -1,8 +1,7 @@
-package com.capou.application.ui.maraicher.addProduct.ViewModel
+package com.capou.application.ui.maraicher.addProduct.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.capou.application.ui.authentification.FirebaseAuthRepository
 import com.capou.application.ui.maraicher.addProduct.repository.AddProductRepository
 
 class AddProductViewModel: ViewModel() {
