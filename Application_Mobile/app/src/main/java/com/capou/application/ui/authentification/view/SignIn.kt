@@ -65,7 +65,7 @@ class SignIn : AppCompatActivity() {
                     var checkSuccess = it.get("success")
                     if(checkSuccess == true) {
                         val intent = Intent(applicationContext, MainActivity::class.java)
-                      //  startActivity(intent)
+                        startActivity(intent)
                     }
                     else{
                         Toast.makeText(this,"L\' adresse mail ou/et mot de passe incorrecte(s).",Toast.LENGTH_LONG).show()
