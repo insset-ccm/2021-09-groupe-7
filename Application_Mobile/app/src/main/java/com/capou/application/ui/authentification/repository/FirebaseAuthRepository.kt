@@ -1,10 +1,7 @@
-package com.capou.application.ui.authentification
+package com.capou.application.ui.authentification.repository
 
-import android.content.Intent
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
-import com.capou.application.MainActivity
 import com.capou.application.model.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -13,7 +10,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.*
 
 class FirebaseAuthRepository {
     private var _authentification: FirebaseAuth = Firebase.auth
@@ -31,13 +27,8 @@ class FirebaseAuthRepository {
                 if (task.isSuccessful) {
                     infos.put("success",true)
                     this._dataSignIn.postValue(infos)
-                    //  async {   createUser(email,firstname,type) }
-                   // this._authentification.signOut()
-                    // Sign in success, update UI with the signed-in user's information
-                    // var iden = _database.child("utilisaters").push().key.toString()
                 }
             }
-
             .addOnFailureListener {
             Log.d("Debug","${it.message}")
                 infos.put("success", false)

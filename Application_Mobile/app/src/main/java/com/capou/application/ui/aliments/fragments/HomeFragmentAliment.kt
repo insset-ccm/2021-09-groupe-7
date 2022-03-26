@@ -1,6 +1,5 @@
 package com.capou.application.ui.aliments.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,19 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.capou.application.R
 import com.capou.application.comments.AlimentAdapter
-import com.capou.application.comments.ChuckNorrisAdapter
 import com.capou.application.databinding.FragmentHomeAlimentBinding
 import com.capou.application.model.AlimentModel
 import com.capou.application.ui.aliments.repository.AlimentRepository
 import com.capou.application.ui.details.DetailsFragment
-import com.capou.application.ui.maraicher.addProduct.ViewModel.AddProductViewModel
+import com.capou.application.ui.maraicher.addProduct.viewModel.AddProductViewModel
 import com.capou.application.ui.maraicher.addProduct.view.AddProduct
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 
 
 class HomeFragmentAliment(): Fragment() {

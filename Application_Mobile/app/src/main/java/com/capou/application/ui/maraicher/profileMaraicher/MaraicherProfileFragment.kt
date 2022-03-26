@@ -25,11 +25,11 @@ class MaraicherProfileFragment : Fragment() {
 
     private var data = Firebase.database.reference
     private lateinit var maraicherProfileViewModel: MaraicherProfileViewModel
-    private var _binding: FragmentMaraicherProfileBinding? = null
+    private lateinit var binding: FragmentMaraicherProfileBinding
     private val auth = Firebase.auth
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
+   // private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,7 +39,7 @@ class MaraicherProfileFragment : Fragment() {
         maraicherProfileViewModel =
             ViewModelProvider(this).get(MaraicherProfileViewModel::class.java)
 
-        _binding = FragmentMaraicherProfileBinding.inflate(inflater, container, false)
+        binding = FragmentMaraicherProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
 
@@ -74,8 +74,5 @@ class MaraicherProfileFragment : Fragment() {
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_activity_main, fragment).addToBackStack(DetailsFragment::class.java.name).commit()
     }
  */
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+
 }

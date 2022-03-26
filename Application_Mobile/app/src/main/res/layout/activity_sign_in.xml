@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    tools:context=".ui.authentification.SignIn">
+    tools:context=".ui.authentification.view.SignIn">
 
 
     <TextView
@@ -16,7 +16,8 @@
         android:padding="5dp"
         android:text="@string/title_sign_in"
         android:textAlignment="center"
-        android:textSize="20dp"
+        android:textColor="@color/black"
+        style="@style/TextAppearance.MaterialComponents.Headline4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.095"
@@ -76,17 +77,15 @@
         app:layout_constraintTop_toBottomOf="@id/signin_password"
         app:layout_constraintRight_toRightOf="parent"/>
 
-
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/message_to_create_account"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/signin_button"
-        app:layout_constraintBaseline_toBaselineOf="@id/signin_signup"
+        app:layout_constraintBaseline_toBaselineOf="@id/signin_signup" />
 
-        />
     <com.google.android.material.button.MaterialButton
         android:id="@+id/signin_signup"
         style="?attr/materialButtonOutlinedStyle"

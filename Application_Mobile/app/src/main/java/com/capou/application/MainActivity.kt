@@ -1,28 +1,22 @@
 package com.capou.application
 
 import android.app.AlertDialog
-import android.app.Application
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.capou.application.databinding.ActivityMainBinding
-import com.capou.application.ui.aliments.fragments.HomeFragmentAliment
-import com.capou.application.ui.aliments.repository.AlimentRepository
-import com.capou.application.ui.authentification.FirebaseAuthViewModel
-import com.capou.application.ui.authentification.SignIn
+import com.capou.application.ui.authentification.viewModel.FirebaseAuthViewModel
+import com.capou.application.ui.authentification.view.SignIn
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -81,9 +75,9 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.logout -> {
                 // Action goes here
-                authentification.signOut();
-                val intent  = Intent(applicationContext,SignIn::class.java);
-                startActivity(intent);
+                authentification.signOut()
+                val intent  = Intent(applicationContext, SignIn::class.java);
+                startActivity(intent)
                 true
             }
             R.id.about -> {
@@ -100,5 +94,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        authentification.signOut()
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        authentification.signOut()
+    }
 }
 
