@@ -16,7 +16,7 @@ import com.capou.application.databinding.FragmentHomeAlimentBinding
 import com.capou.application.model.AlimentModel
 import com.capou.application.ui.aliments.repository.AlimentRepository
 import com.capou.application.ui.details.DetailsFragment
-import com.capou.application.ui.maraicher.addProduct.ViewModel.AddProductViewModel
+import com.capou.application.ui.maraicher.addProduct.viewModel.AddProductViewModel
 import com.capou.application.ui.maraicher.addProduct.view.AddProduct
 
 

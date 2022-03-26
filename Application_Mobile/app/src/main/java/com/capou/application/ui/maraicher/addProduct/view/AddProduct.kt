@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.capou.application.databinding.FragmentAddProductBinding
-import com.capou.application.ui.maraicher.addProduct.ViewModel.AddProductViewModel
+import com.capou.application.ui.maraicher.addProduct.viewModel.AddProductViewModel
 
 class AddProduct : Fragment {
 
