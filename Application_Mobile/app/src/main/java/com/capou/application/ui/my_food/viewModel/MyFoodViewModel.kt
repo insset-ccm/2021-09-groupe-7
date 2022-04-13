@@ -2,6 +2,7 @@ package com.capou.application.ui.my_food.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.capou.application.model.AlimentPointVentes
 import com.capou.application.ui.my_food.repository.MyFoodRepository
 
 class MyFoodViewModel : ViewModel() {
@@ -13,7 +14,7 @@ class MyFoodViewModel : ViewModel() {
     }
 
     // Return the food list
-    fun getMyFoodList(): MutableLiveData<ArrayList<String?>> {
+    fun getMyFoodList(): MutableLiveData<ArrayList<AlimentPointVentes>> {
         repository.getMyFoodList();
        return repository.myFoodList
     }

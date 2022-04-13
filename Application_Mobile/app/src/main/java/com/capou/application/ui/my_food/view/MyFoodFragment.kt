@@ -6,13 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.capou.application.R
 import com.capou.application.databinding.MyFoodFragmentBinding
+import com.capou.application.model.AlimentModel
+import com.capou.application.model.AlimentPointVentes
+import com.capou.application.ui.details.DetailsFragment
+import com.capou.application.ui.maraicher.addProduct.view.AddProduct
 import com.capou.application.ui.my_food.adapter.MyFoodAdapter
 import com.capou.application.ui.my_food.viewModel.MyFoodViewModel
-import com.capou.application.ui.pickup_point.adapter.PickUpPointAdapter
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class MyFoodFragment : Fragment() {
     private lateinit var binding: MyFoodFragmentBinding
@@ -28,11 +34,13 @@ class MyFoodFragment : Fragment() {
     }
 
     override fun onStart() {
+
         super.onStart()
-        adapter = MyFoodAdapter()
+        adapter = MyFoodAdapter{
+                item,view -> onItemClick(item, view)
+        }
         viewModel = ViewModelProvider(this).get(MyFoodViewModel::class.java)
         viewModel.getMyFoodList().observe( this,{
-            Log.d("Debug","${it}")
             adapter.submitList(it)
         })
 
@@ -40,4 +48,8 @@ class MyFoodFragment : Fragment() {
         binding.recyclerFood.adapter = adapter
     }
 
+
+    private fun onItemClick (aliment: AlimentPointVentes, view: View){
+        Log.d("Details: ","${aliment} ${view}")
+    }
 }

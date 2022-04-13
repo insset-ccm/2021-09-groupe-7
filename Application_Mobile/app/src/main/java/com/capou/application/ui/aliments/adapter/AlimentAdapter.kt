@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.capou.application.databinding.ItemVerticalAlimentBinding
+import com.capou.application.helper.FonctionHelper
 import com.capou.application.model.AlimentModel
 
 val diffUtilsAliment = object : DiffUtil.ItemCallback<AlimentModel>() {
@@ -46,9 +47,13 @@ class AlimentViewHolder(
          Glide.with(itemView.context)
              .load(chuckNorrisUi.images)
              .into(binding.imageItem)
-
-        binding.nameItem.text = chuckNorrisUi.nom
-
+        val text = FonctionHelper().helpterText(chuckNorrisUi.nom)
+        var saison = "Saison: "
+        for (list in chuckNorrisUi.saison){
+            saison += list?.let { FonctionHelper().helpterText(it) }.toString()+" "
+        }
+        binding.nameItem.text = text
+        binding.saisonItem.text = saison.trim()
 
 
 

@@ -48,12 +48,12 @@ class MaraicherProfileFragment : Fragment() {
             textView.text = it
         })
 
-       var id = auth.currentUser?.uid.toString()
-       var query = data.child("utilisateurs")
+       val id = auth.currentUser?.uid.toString()
+       val query = data.child("utilisateurs")
 
       query.child(id).addValueEventListener(object : ValueEventListener {
           override fun onDataChange(snapshot: DataSnapshot) {
-              Log.d("Id","${snapshot}")
+              Log.d("Profil","${snapshot}")
               binding.itemFirstname.text = snapshot.child("nom").getValue(String::class.java)
               binding.itemLastname.text = snapshot.child("prenom").getValue(String::class.java)
               binding.textMaraicherProfile.text = snapshot.child("type").getValue(String::class.java)

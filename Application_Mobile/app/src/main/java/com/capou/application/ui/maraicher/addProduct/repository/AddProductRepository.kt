@@ -45,15 +45,32 @@ class AddProductRepository {
     }
 
 
-    fun AddProduct(product:String){
+    fun AddProduct(product:String,lieu:String = "default"){
         var getUid = auth.currentUser?.uid.toString()
       //  if(!getUid.isNullOrEmpty()){
-        var key = databaseRef.child(getUid).key
-        if(!getUid.isNullOrEmpty()){
-           var defaultKey = databaseRef.child(getUid).child("products").push().key
-            databaseRef.child(getUid).child("products").child(defaultKey.toString()).setValue(product)
+        val key = databaseRef.child(getUid).key
+        if(!getUid.isEmpty()){
+            val isKey = databaseRef.child(getUid).child("products").key
+            Log.d("TAG", "AddProduct: ${isKey}")
+            if( isKey == product){
+                databaseRef.child(getUid).child("products").setValue(product)
+            }
+           val defaultKey = databaseRef.child(getUid).child("products").child(product).push().key
+            databaseRef.child(getUid).child("products").child(product).child(defaultKey.toString()).setValue(lieu)
+
+            // Add Point de ventes
+
+            val isPoint = databaseRef.child(getUid).child("point_ventes").key
+            Log.d("TAG", "AddProduct: ${isPoint}")
+            if( isKey == product){
+                databaseRef.child(getUid).child("point_ventes").setValue(lieu)
+            }
+            val point = databaseRef.child(getUid).child("point_ventes").child(lieu).push().key
+            databaseRef.child(getUid).child("point_ventes").child(lieu).child(point.toString()).setValue(product)
+
         }
         Log.d("Debuger","${key}")
+
      //   }
     }
 
