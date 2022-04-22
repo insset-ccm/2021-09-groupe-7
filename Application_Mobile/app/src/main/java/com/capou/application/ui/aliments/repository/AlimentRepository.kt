@@ -10,8 +10,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.database.GenericTypeIndicator
-
-
+import kotlin.math.log
 
 
 class AlimentRepository {
@@ -32,13 +31,18 @@ class AlimentRepository {
                         //val display = result.getValue(CommentModel::class.java)
                         //Log.d("DE","--> "+display)
                         Log.d("De"," "+result)
+                        val test = arrayListOf<String?>()
                         val genericTypeIndicator: GenericTypeIndicator<HashMap<String,String>?> =
                             object : GenericTypeIndicator<HashMap<String,String>?>() {}
-                        var images = result.child("images").getValue(String::class.java).toString()
-                        var nom = result.child("nom").getValue(String::class.java).toString()
-                        var saison:HashMap<String,String>? = result.child("saison").getValue(genericTypeIndicator)
-                        Log.d("De",images.toString())
-                       element.add(AlimentModel(nom,images,saison))
+                        val images = result.child("images").getValue(String::class.java).toString()
+                        val nom = result.child("nom").getValue(String::class.java).toString()
+                        for(season in result.child("saison").children){
+                            val value = season.getValue(String::class.java).toString()
+                            test.add(value)
+                            Log.d("TAG", "oVale: ${value}")
+                        }
+                        val saison:HashMap<String,String>? = result.child("saison").getValue(genericTypeIndicator)
+                       element.add(AlimentModel(nom,images,test))
 
                     }
 

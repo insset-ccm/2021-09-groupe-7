@@ -16,7 +16,7 @@ class AddProductViewModel: ViewModel() {
      repository.getUserData()
      return repository.userInfo
   }
-    fun addProduct(product:String){
-        repository.AddProduct(product)
+    fun addProduct(product:String,lieu:String){
+        repository.AddProduct(product,lieu)
     }
 }

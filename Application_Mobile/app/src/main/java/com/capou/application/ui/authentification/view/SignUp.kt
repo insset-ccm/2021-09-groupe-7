@@ -34,7 +34,7 @@ class SignUp : AppCompatActivity() {
             startActivity(intent);
         }
 
-        var list = arrayOf("Utilisateur","Maraîcher")
+        val list = arrayOf("Utilisateur","Maraîcher")
         binding.signinPasswordC.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 val selectedItem = parent.getItemAtPosition(position).toString()
@@ -56,10 +56,10 @@ class SignUp : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         binding.signupButton.setOnClickListener {
-            var email = binding.email.text.toString()
-            var password = binding.password.text.toString()
-            var name = binding.lastname.text.toString()
-            var firstname = binding.firstname.text.toString()
+            val email = binding.email.text.toString()
+            val password = binding.password.text.toString()
+            val name = binding.lastname.text.toString()
+            val firstname = binding.firstname.text.toString()
             if(!email.isEmpty()
                 && !password.isEmpty()
                 && !name.isEmpty()

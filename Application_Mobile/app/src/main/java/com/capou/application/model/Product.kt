@@ -18,7 +18,12 @@ data class ProductDetails(
 data class AlimentModel(
     var nom:String,
     var images: String,
-    var saison:HashMap<String,String>?
+    var saison:ArrayList<String?>
+)
+
+data class AlimentPointVentes(
+    var name: String?,
+    var address: ArrayList<String?>
 )
 
 data class CommentModel(

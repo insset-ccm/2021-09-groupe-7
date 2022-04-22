@@ -34,8 +34,8 @@
         android:title="@string/title_home_maraicher" /-->
     <item
         android:id="@+id/navigation_my_food"
-        android:icon="@drawable/cookie"
-        android:title="@string/title_mes_aliment" />
+        android:icon="@drawable/favorite"
+        android:title="@string/favoris" />
 
     <item
         android:id="@+id/navigation_maraicher_profile"

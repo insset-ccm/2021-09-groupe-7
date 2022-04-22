@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.capou.application.databinding.FragmentAddProductBinding
+import com.capou.application.helper.FonctionHelper
 import com.capou.application.ui.maraicher.addProduct.viewModel.AddProductViewModel
 
 class AddProduct : Fragment {
@@ -20,6 +21,7 @@ class AddProduct : Fragment {
     private var pickup :String = "11 Rue Voltaire, Saint-Quentin"
     val customerName: String
     val imageName:String
+    private lateinit var pick:String
 
     constructor(customerName: String, imageName:String) : super() {
         this.customerName = customerName
@@ -38,9 +40,10 @@ class AddProduct : Fragment {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        Log.d("Debug","${this.customerName}")
+
         _binding = FragmentAddProductBinding.inflate(layoutInflater,container,false)
-        _binding.title.text = this.customerName
+        val title = FonctionHelper().helpterText(this.customerName)
+        _binding.title.text = title
         Glide.with(this).load(this.imageName).into(_binding.images)
         _binding.pickupPoint.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
@@ -53,13 +56,21 @@ class AddProduct : Fragment {
 
             }
         }
-        val list = arrayOf("3 Rue Litré, Lille","5 Rue Voltaire, Saint-Quentin","24 Rue Alexandre Dumas, Nantes")
+        val list = arrayOf("3 Rue Litré, Lille","5 Rue Voltaire, Saint-Quentin","24 Rue Alexandre Dumas, Nantes","7 boulevard Bryas, Creil","81 rue Porte d'Orange, Cenon"," 5 Chemin Des Bateliers, Angers"," 33 rue Banaudon, Lyon")
         val array = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, list)
         array.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+        _binding.pickupPoint.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                val selectedItem = parent.getItemAtPosition(position).toString()
+                pick = selectedItem
+            } // to close the onItemSelected
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
         _binding.pickupPoint.adapter = array
 
         _binding.addProduct.setOnClickListener {
-            viewModel.addProduct(this.customerName)
+            viewModel.addProduct(this.customerName,pick)
           //  Toast.makeText(this.context, "Produit Ajouté",Toast.LENGTH_LONG).show()
         }
         return _binding.root

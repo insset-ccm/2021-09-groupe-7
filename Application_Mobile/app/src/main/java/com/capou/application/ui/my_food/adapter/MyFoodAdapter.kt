@@ -2,21 +2,24 @@ package com.capou.application.ui.my_food.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.capou.application.databinding.ItemPickUpPointBinding
 import com.capou.application.helper.FonctionHelper
+import com.capou.application.model.AlimentModel
+import com.capou.application.model.AlimentPointVentes
 
 
-val diffUtils = object : DiffUtil.ItemCallback<String>() {
-    override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
+val diffUtils = object : DiffUtil.ItemCallback<AlimentPointVentes>() {
+    override fun areItemsTheSame(oldItem: AlimentPointVentes, newItem: AlimentPointVentes): Boolean {
         return oldItem == newItem
     }
 
 
-    override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
+    override fun areContentsTheSame(oldItem: AlimentPointVentes, newItem: AlimentPointVentes): Boolean {
         return oldItem == newItem
     }
 
@@ -25,27 +28,28 @@ val diffUtils = object : DiffUtil.ItemCallback<String>() {
 
 class ChuckNorrisQuoteViewHolder(
     val binding: ItemPickUpPointBinding,
+    onItemClick: (objectDataSample: AlimentPointVentes, view: View) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
 
-   // private lateinit var ui: String
+   private lateinit var ui: AlimentPointVentes
 
     init {
-       /* binding.root.setOnClickListener {
-            onItemClick(ui, itemView,)
+       binding.root.setOnClickListener {
+            onItemClick(ui, itemView)
         }
-        */
 
     }
 
 
-    fun bind(name: String) {
-        var text = FonctionHelper().helpterText(name)
+    fun bind(alimentPointVentes: AlimentPointVentes) {
+        ui = alimentPointVentes
+        val text = ui.name?.let { FonctionHelper().helpterText(it) }
         binding.pickupPointAddress.text = text
 
     }
 }
-class MyFoodAdapter() : ListAdapter<String, ChuckNorrisQuoteViewHolder>(diffUtils) {
+class MyFoodAdapter(private val onItemClick: (quoteUi: AlimentPointVentes, view: View) -> Unit) : ListAdapter<AlimentPointVentes, ChuckNorrisQuoteViewHolder>(diffUtils) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChuckNorrisQuoteViewHolder {
@@ -54,7 +58,7 @@ class MyFoodAdapter() : ListAdapter<String, ChuckNorrisQuoteViewHolder>(diffUtil
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ),onItemClick
         )
     }
 

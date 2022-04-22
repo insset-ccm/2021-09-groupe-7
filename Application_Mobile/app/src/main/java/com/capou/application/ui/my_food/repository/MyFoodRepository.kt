@@ -2,6 +2,7 @@ package com.capou.application.ui.my_food.repository
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.capou.application.model.AlimentPointVentes
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -11,8 +12,8 @@ import com.google.firebase.ktx.Firebase
 
 class MyFoodRepository {
 
-    var myFoodList = MutableLiveData<ArrayList<String?>>()
-    private var listAliment = ArrayList<String?>();
+    var myFoodList = MutableLiveData<ArrayList<AlimentPointVentes>>()
+    private var listAliment = ArrayList<AlimentPointVentes>();
     private var path = Firebase.database.reference.child("utilisateurs")
     private var currentUser = Firebase.auth.currentUser?.uid.toString()
 
@@ -22,16 +23,22 @@ class MyFoodRepository {
     }
 
     fun getMyFoodList(){
-        if(!currentUser.isNullOrEmpty()){
-            var query = path.child(currentUser).child("products");
+        if(!currentUser.isEmpty()){
+            val query = path.child(currentUser).child("products")
             query.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     Log.d("Snapshot","${snapshot}")
 
                     for(list in snapshot.children){
-                        var result = list.getValue(String::class.java)
-                       listAliment.add(result)
+                        val pl = arrayListOf<String?>()
+                        Log.d("TAG", "onDataChange: ${list}")
+                            for(place in list.children){
+                                pl.add(place
+                                    .getValue(String::class.java))
+                            }
+                            listAliment.add(AlimentPointVentes(list.key,pl))
                     }
+
                     myFoodList.postValue(listAliment)
                 }
 

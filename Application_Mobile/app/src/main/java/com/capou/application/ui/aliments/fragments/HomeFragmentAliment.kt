@@ -37,7 +37,6 @@ class HomeFragmentAliment(): Fragment() {
         viewModel = ViewModelProvider(this).get(AddProductViewModel::class.java)
         val root: View = binding.root
 
-        //créer une liste qui va stocker les aliments
             return root
         }
 
@@ -67,9 +66,7 @@ class HomeFragmentAliment(): Fragment() {
     }
 
     private fun onItemClick (aliment: AlimentModel, view: View){
-        Log.d("Details: ",aliment.nom)
-        Log.d("Debug","${getType} ")
-
+        Log.d("TAG", "onItemClick: ${aliment.saison}")
            if(getType?.lowercase() == "utilisateur"){
                 val fragment: Fragment = DetailsFragment(aliment.nom,aliment.images);
                 val fragmentManager : FragmentManager = parentFragmentManager

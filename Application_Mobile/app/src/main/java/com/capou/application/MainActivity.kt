@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             else{
                //navView.menu.removeItem(R.id.navigation_home)
                // navView.menu.removeItem(R.id.navigation_product)
-                navView.menu.removeItem(R.id.navigation_dashboard)
+              //  navView.menu.removeItem(R.id.navigation_dashboard)
 
             }
         })
