@@ -1,10 +1,13 @@
 package com.capou.application.ui.home
 
+import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
@@ -20,6 +23,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import java.io.IOException
 import java.util.*
 
 
@@ -30,8 +34,6 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeViewModel: HomeViewModel
 
-    // private var _binding: FragmentHomeBinding? = null
-    //private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,28 +58,50 @@ class HomeFragment : Fragment() {
            mMap = googleMap
 
             val currentCity = LatLng(49.83689727421656, 3.3002214823430656)
-            val zoom = 55f
-            mMap.addMarker(MarkerOptions().position(currentCity).title("Insset saint quentin"))
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(currentCity))
+
+            mMap.addMarker(MarkerOptions().position(currentCity).title("Insset Saint Quentin"))
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentCity, 17F))
 
             setMapLongClick(mMap)
             setPoiClick(mMap)
 
         } })
     }
+
     private fun setMapLongClick(map: GoogleMap) {
-        map.setOnMapClickListener {
-            val snippet = String.format(
-                Locale.getDefault(),
-                "Lat: %15.5f, Lng: %25.5f",
-                it.latitude,
-                it.longitude
-            )
-            map.addMarker(MarkerOptions().position(it).
-            title("pick up ").snippet(snippet))
+        mMap.setOnMapClickListener {
+            val lat = it.latitude
+            val lng = it.longitude
+
+            // Initializing Geocoder
+            val mGeocoder = Geocoder(context, Locale.getDefault())
+            var addressString= ""
+
+            // Reverse-Geocoding starts
+            try {
+                val addressList: List<Address> = mGeocoder.getFromLocation(lat, lng, 1)
+
+                if (addressList != null && addressList.isNotEmpty()) {
+
+                    val address = addressList[0]
+                    val sb = StringBuilder()
+                    for (i in 0 until address.maxAddressLineIndex) {
+                        sb.append(address.getAddressLine(i)).append("\n")
+                    }
+
+                    if (address.premises != null)
+                        sb.append(address.premises).append(", ")
+                    sb.append(address.getAddressLine(0))
+                    addressString = sb.toString()
+                }
+            } catch (e: IOException) {
+                Toast.makeText(context,"Impossible de se connecter à Geocoder", Toast.LENGTH_LONG).show()
+            }
+            mMap.addMarker(MarkerOptions().position(it).title(addressString))
 
         }
     }
+
     private fun setPoiClick(map: GoogleMap) {
         map.setOnPoiClickListener { point ->
             val poiMarker = map.addMarker(MarkerOptions().position(point.latLng).title(point.name))
