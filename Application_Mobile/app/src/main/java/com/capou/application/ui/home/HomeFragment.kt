@@ -21,6 +21,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.io.IOException
@@ -30,7 +31,7 @@ import java.util.*
 class HomeFragment : Fragment() {
 
     private lateinit var mMap: GoogleMap
-    private var data = Firebase.database.reference
+    private var dataBaseGetInst = FirebaseDatabase.getInstance()
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeViewModel: HomeViewModel
 
@@ -97,7 +98,11 @@ class HomeFragment : Fragment() {
             } catch (e: IOException) {
                 Toast.makeText(context,"Impossible de se connecter à Geocoder", Toast.LENGTH_LONG).show()
             }
+
             mMap.addMarker(MarkerOptions().position(it).title(addressString))
+
+            val databaseRef = dataBaseGetInst.getReference("points_de_vente")
+            databaseRef.push().child("location").setValue(addressString)
 
         }
     }
@@ -108,5 +113,8 @@ class HomeFragment : Fragment() {
             poiMarker?.showInfoWindow()
         }
     }
+
+
+
 
 }
