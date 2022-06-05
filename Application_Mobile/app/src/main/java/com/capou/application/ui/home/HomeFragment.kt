@@ -61,6 +61,7 @@ class HomeFragment : Fragment() {
 
     }
 
+    // DATA CLASS
     data class LocationLogging(
         var nomAd: String = "",
         var Latitude: Double? = 0.0,
@@ -75,7 +76,6 @@ class HomeFragment : Fragment() {
         mapFragment.getMapAsync( object : OnMapReadyCallback {
            override fun onMapReady(googleMap: GoogleMap) {
            mMap = googleMap
-
             val currentCity = LatLng(49.83689727421656, 3.3002214823430656)
             mMap.addMarker(MarkerOptions().position(currentCity).title("Insset Saint Quentin"))
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentCity, 17F))
@@ -85,84 +85,44 @@ class HomeFragment : Fragment() {
 
 
            databaseRef = FirebaseDatabase.getInstance().getReference()
-           val id = auth.currentUser?.uid.toString()
+           val idCurrentUser = auth.currentUser?.uid.toString()
+           val queryGetUser = databaseRef.child("utilisateurs").child(idCurrentUser)
+           Log.d("queroyGetUser", "${queryGetUser}")
 
-           if( id == "aKGRX0GVIHg4Uwoi3Ia9muHA47E3") {
-               val pickupPointCommun = databaseRef.child("demo_point_vente/commun")
-               pickupPointCommun.addValueEventListener(logListener)
-               Log.d("my auth >=> V >=> >=>", "${id}")
-           }else{
+               queryGetUser.addValueEventListener(object : ValueEventListener {
+                   override fun onDataChange(snapshot: DataSnapshot) {
+                       val typeUser = snapshot.child("type").getValue(String::class.java)
 
-               Log.d("my auth >=> V >=> >=>", "tannn taannnnn taaannnn")
-               val pickupPointMaraicher = databaseRef.child("demo_point_vente/maraichers")
-               pickupPointMaraicher.addValueEventListener(logListener)
-               setMapLongClick(mMap)
-           }
+                       if( typeUser == "Utilisateur") {
+                          val pickupPointCommun = databaseRef.child("demo_point_vente")
+                           pickupPointCommun.addValueEventListener(object : ValueEventListener {
+                               override fun onDataChange(snapshot: DataSnapshot) {
 
-          // Show data marker from firebase
-/*
-               databaseRef = FirebaseDatabase.getInstance().getReference()
-               val query =  databaseRef.child("points_de_vente")
-               query.addValueEventListener(object : ValueEventListener {
-                   override fun onCancelled(error: DatabaseError) {
-                       Toast.makeText(context, "Could not read from database", Toast.LENGTH_LONG).show()
-                   }
-                   //     @SuppressLint("LongLogTag")
-                   override fun onDataChange(dataSnapshot : DataSnapshot) {
-                       Log.d("my datasnapshot " , "${dataSnapshot}")
-                       if (dataSnapshot.exists()) {
-                           //  var addressListMod = arrayListOf<LocationLogging>()
-                           for ( result in dataSnapshot.children) {
-
-                               val locationLoggingNom = result.child("nomAd").getValue(String::class.java)
-                               val locationLoggingLa = result.child("latitude").getValue(Double::class.java)
-                               val locationLoggingLon = result.child("longitude").getValue(Double::class.java)
-
-                               var driverLat = locationLoggingLa
-                               var driverLong = locationLoggingLon
-
-                               if (driverLat != null && driverLong != null) {
-                                   val driverLoc = LatLng(driverLat, driverLong)
-                                   // Initializing Geocoder
-                                   ///     val mGeocoder = Geocoder(applicationContext, Locale.getDefault())
-                                   ///     var addressString = ""
-                                   /*
-                                       try {
-                                           val addressList: List<Address> =
-                                               mGeocoder.getFromLocation(driverLat, driverLong, 1)
-
-                                           if (addressList != null && addressList.isNotEmpty()) {
-                                               val address = addressList[0]
-                                               val sb = StringBuilder()
-                                               for (i in 0 until address.maxAddressLineIndex) {
-                                                   sb.append(address.getAddressLine(i)).append("\n")
-                                               }
-                                               if (address.premises != null)
-                                                   sb.append(address.premises).append(", ")
-                                               sb.append(address.getAddressLine(0))
-                                               addressString = sb.toString()
-                                           }
-                                       } catch (e: IOException) {
-                                           Toast.makeText(applicationContext,"Unable connect to Geocoder",Toast.LENGTH_LONG).show()
-                                       }
-                                    */
-
-                                   val blulac = LatLng(49.83689727421656, 3.3002214823430656)
-                                   val markerOptions = MarkerOptions().position(driverLoc).title(locationLoggingNom)
-                                   mMap.addMarker(markerOptions)
-                                   mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(blulac, 17f))
-                                   Toast.makeText(context, "Locations accessed from the database",Toast.LENGTH_LONG).show()
+                                   for(result_point in snapshot.children){
+                                       pickupPointCommun.child(result_point.key.toString()).addValueEventListener(showMarker)
+                                   }
                                }
-                           }
+                               override fun onCancelled(error: DatabaseError) {
+                                   Log.d("Tag",error.message)
+                               }
+                           })
+                       }else if (typeUser == "Maraîcher"){
+
+
+                           val pickupPointMaraicher = databaseRef.child("demo_point_vente").child(idCurrentUser)
+                           pickupPointMaraicher.addValueEventListener(showMarker)
+                           setMapLongClick(mMap)
                        }
+
                    }
-               })
 
-
- */
+                   override fun onCancelled(error: DatabaseError) {
+                       Log.d("Tag",error.message)
+                   }})
         } })
     }
 
+    //Add marker
     private fun setMapLongClick(map: GoogleMap) {
         mMap.setOnMapClickListener {
             val lat = it.latitude
@@ -194,10 +154,10 @@ class HomeFragment : Fragment() {
             }
 
             mMap.addMarker(MarkerOptions().position(it).title(addressString))
-
+            val idCurrentMara = auth.currentUser?.uid.toString()
 
             val latlongAdst = LocationLogging(addressString,it.latitude,it.longitude)
-            val databaseRef = dataBaseGetInst.getReference("demo_point_vente/maraichers")
+            val databaseRef = dataBaseGetInst.getReference("demo_point_vente").child(idCurrentMara)
             //databaseRef.push().child("location").setValue(addressString)
             val dataChild = databaseRef.push()
             //dataChild.setValue(addressTV)
@@ -205,6 +165,7 @@ class HomeFragment : Fragment() {
 
         }
     }
+
     private fun setPoiClick(map: GoogleMap) {
         map.setOnPoiClickListener { point ->
             val poiMarker = map.addMarker(MarkerOptions().position(point.latLng).title(point.name))
@@ -214,73 +175,40 @@ class HomeFragment : Fragment() {
 
     // show data
 
+    private fun displyMarker(dataSnapshot: DataSnapshot){
+        for ( result in dataSnapshot.children) {
 
-    val logListener = object : ValueEventListener {
+            val locationLoggingNom = result.child("nomAd").getValue(String::class.java)
+            val locationLoggingLa = result.child("latitude").getValue(Double::class.java)
+            val locationLoggingLon = result.child("longitude").getValue(Double::class.java)
+
+            val driverLat = locationLoggingLa
+            val driverLong = locationLoggingLon
+
+            if (driverLat !=null  && driverLong != null) {
+                val driverLoc = LatLng(driverLat, driverLong)
+
+                val markerOptions =
+                    MarkerOptions().position(driverLoc).title(locationLoggingNom)
+                mMap.addMarker(markerOptions)
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f))
+                Toast.makeText(
+                    context,
+                    "Locations accessed from the database",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
+    }
+
+    val showMarker = object : ValueEventListener {
         override fun onCancelled(error: DatabaseError) {
             Toast.makeText(context, "Impossible de lire les données de la base", Toast.LENGTH_LONG).show()
         }
         //     @SuppressLint("LongLogTag")
         override fun onDataChange(dataSnapshot: DataSnapshot) {
             if (dataSnapshot.exists()) {
-
-                for ( result in dataSnapshot.children) {
-
-                    val locationLoggingNom = result.child("nomAd").getValue(String::class.java)
-                    val locationLoggingLa = result.child("latitude").getValue(Double::class.java)
-                    val locationLoggingLon = result.child("longitude").getValue(Double::class.java)
-
-                    val driverLat = locationLoggingLa
-                    val driverLong = locationLoggingLon
-
-/*
-                val locationLogging = dataSnapshot.child("demo_address").getValue(LocationLogging::class.java)
-                var driverLat = locationLogging?.Latitude
-                var driverLong = locationLogging?.Longitude
-                var nomAdd = locationLogging?.nomAd
-
- */
-                //Log.d("Latitude of driver", driverLat.toString())
-                //    Log.d("Longitude read from database", driverLong.toString())
-                if (driverLat !=null  && driverLong != null) {
-                    val driverLoc = LatLng(driverLat, driverLong)
-                    // Initializing Geocoder
-/*
-                    val mGeocoder = Geocoder(context, Locale.getDefault())
-                    var addressString= ""
-                    // Reverse-Geocoding starts
-                    try {
-                        val addressList: List<Address> = mGeocoder.getFromLocation(driverLat, driverLong, 1)
-                        if (addressList != null && addressList.isNotEmpty()) {
-                            val address = addressList[0]
-                            val sb = StringBuilder()
-                            for (i in 0 until address.maxAddressLineIndex) {
-                                sb.append(address.getAddressLine(i)).append("\n")
-                            }
-                            if (address.premises != null)
-                                sb.append(address.premises).append(", ")
-                            sb.append(address.getAddressLine(0))
-                            addressString = sb.toString()
-                        }
-                    } catch (e: IOException) {
-                        Toast.makeText(context,"Unable connect to Geocoder",Toast.LENGTH_LONG).show()
-                    }
-
- */
-
-                    //  val driverLoc = addressString
-                    val markerOptions =
-                        MarkerOptions().position(driverLoc).title(locationLoggingNom)
-                    mMap.addMarker(markerOptions)
-                    mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f))
-                   // mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(driverLoc, 17f))
-                    //Zoom level - 1: World, 5: Landmass/continent, 10: City, 15: Streets and 20: Buildings
-                    Toast.makeText(
-                        context,
-                        "Locations accessed from the database",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-                }
+                displyMarker(dataSnapshot)
             }
         }
     }
