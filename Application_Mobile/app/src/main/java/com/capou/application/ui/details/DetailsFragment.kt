@@ -88,15 +88,13 @@ class DetailsFragment : Fragment {
                 call: Call<DetailsProduct?>,
                 response: Response<DetailsProduct?>
             ) {
-                var message = "${response.body()?.family.toString()} \n ${response.body()?.nutritions?.calories.toString()} \n ${response.body()?.nutritions?.fat.toString()}"
-
-                    //response.body().toString()
-                binding.detailCarbohydrates.text ="Carbohydrates: ${response.body()?.nutritions?.carbohydrates.toString()}"
-                binding.detailCalories.text = "Calories: ${response.body()?.nutritions?.calories.toString()}"
-                binding.detailFat.text = "Matières Grasses: ${response.body()?.nutritions?.fat.toString()}"
-                binding.detailProtein.text = "Protéines: ${response.body()?.nutritions?.protein.toString()}"
-                binding.detailSugar.text = "Sucres: ${response.body()?.nutritions?.sugar.toString()}"
-                Log.d("Informations: ",response.body().toString())
+                binding.calorie.text = "Calories: ${response.body()?.data?.aliments_info?.calorie.toString()}"
+                binding.vitamies.text = "Vitamines: ${response.body()?.data?.aliments_info?.vitamines.toString()}"
+                binding.protein.text = "Protéines: ${response.body()?.data?.aliments_info?.proteine.toString()}"
+                binding.glucide.text = "Glucides: ${response.body()?.data?.aliments_info?.glucides.toString()}"
+                binding.description.text = "Description: ${response.body()?.data?.description.toString()}"
+                val test =  getVitamineList(response.body()?.data?.aliments_info?.vitamines);
+                Log.d("Informations: ",test+" "+response.body().toString())
             }
 
             override fun onFailure(call: Call<DetailsProduct?>, t: Throwable) {
@@ -104,6 +102,18 @@ class DetailsFragment : Fragment {
             }
         })
 
+    }
+
+    fun getVitamineList(listVitamines: ArrayList<String>?):String{
+        var message = "";
+        if (listVitamines != null) {
+            for (list in listVitamines){
+                Log.d("TAG", "getVitamineList: "+list)
+                message = message + list
+            }
+        }
+        Log.d("TAG", "getVitamineList: "+message)
+        return message
     }
 
 }
