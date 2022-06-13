@@ -78,6 +78,11 @@ class MainActivity : AppCompatActivity() {
                 authentification.signOut()
                 val intent  = Intent(applicationContext, SignIn::class.java);
                 startActivity(intent)
+                var shared = getSharedPreferences("test", MODE_PRIVATE)
+               shared.edit().remove("test").commit()
+
+               val value = shared.getString("test","element-default")
+                Log.d(TAG, "onOptionsItemSelected: "+ value)
                 true
             }
             R.id.about -> {

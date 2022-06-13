@@ -19,10 +19,6 @@ class PickUpPointRepository {
         private var data = Firebase.database.reference
 
 
-        fun tests(){
-            Log.d("dev","start pickup point")
-        }
-
         fun getPickUpPoint(context: Context,title:String){
             Log.d("Data","${title}")
             var query = data.child("pickup_point").child(title)

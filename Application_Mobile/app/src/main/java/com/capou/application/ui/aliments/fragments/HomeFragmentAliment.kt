@@ -68,13 +68,13 @@ class HomeFragmentAliment(): Fragment() {
     private fun onItemClick (aliment: AlimentModel, view: View){
         Log.d("TAG", "onItemClick: ${aliment.saison}")
            if(getType?.lowercase() == "utilisateur"){
-                val fragment: Fragment = DetailsFragment(aliment.nom,aliment.images);
+                val fragment: Fragment = DetailsFragment(aliment.nom,aliment.images)
                 val fragmentManager : FragmentManager = parentFragmentManager
                 fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_activity_main, fragment).addToBackStack(
                     DetailsFragment::class.java.name).commit()
             }
             else{
-                val fragment: Fragment = AddProduct(aliment.nom,aliment.images);
+                val fragment: Fragment = AddProduct(aliment.nom,aliment.images)
                 val fragmentManager : FragmentManager = parentFragmentManager
                 fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_activity_main, fragment).addToBackStack(
                     AddProduct::class.java.name).commit()

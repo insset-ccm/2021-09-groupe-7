@@ -24,7 +24,6 @@ class AddProductRepository {
     fun getUserData(){
         var getUid = auth.currentUser?.uid.toString()
         //if(getUid.isNullOrEmpty()){
-            var key = databaseRef.child("iU4wZkaPRWb20CHRqn4f2fkgH7F3").key
         if(!getUid.isNullOrEmpty()){
             databaseRef.child(getUid).addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -40,7 +39,7 @@ class AddProductRepository {
                 }
             })
         }
-            Log.d("Debuger","${key}")
+
         //}
     }
 
