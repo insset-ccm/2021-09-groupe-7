@@ -19,11 +19,14 @@ import com.capou.application.ui.maraicher.addProduct.view.AddProduct
 import com.capou.application.ui.my_food.adapter.MyFoodAdapter
 import com.capou.application.ui.my_food.viewModel.MyFoodViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class MyFoodFragment : Fragment() {
     private lateinit var binding: MyFoodFragmentBinding
     private lateinit var viewModel: MyFoodViewModel
     private lateinit var adapter: MyFoodAdapter
+    private var currentUser = Firebase.auth.currentUser?.uid.toString()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,5 +54,7 @@ class MyFoodFragment : Fragment() {
 
     private fun onItemClick (aliment: AlimentPointVentes, view: View){
         Log.d("Details: ","${aliment} ${view}")
+        if(currentUser != null && aliment.name !=null)
+        viewModel.deleteMyFood(aliment.name,currentUser)
     }
 }

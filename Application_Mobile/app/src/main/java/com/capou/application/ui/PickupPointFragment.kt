@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.capou.application.databinding.FragmentPickuPointBinding
 import com.capou.application.model.PickUpPoint
+import com.capou.application.ui.maraicher.addProduct.viewModel.AddProductViewModel
 import com.capou.application.ui.pickup_point.adapter.PickUpPointAdapter
 import com.capou.application.ui.pickup_point.viewModel.PickUpPointViewModel
 
@@ -21,6 +22,7 @@ class PickupPointFragment(val productName: String) : Fragment()  {
 
     private lateinit var binding: FragmentPickuPointBinding
     private lateinit var viewModel: PickUpPointViewModel
+    private lateinit var viewModel2: AddProductViewModel
     private lateinit var adapter: PickUpPointAdapter
 
     override fun onCreateView(
@@ -30,6 +32,7 @@ class PickupPointFragment(val productName: String) : Fragment()  {
     ): View? {
         binding = FragmentPickuPointBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this).get(PickUpPointViewModel::class.java)
+        viewModel2 = ViewModelProvider(this).get(AddProductViewModel::class.java)
         val root: View = binding.root
         return root
     }
@@ -56,7 +59,8 @@ class PickupPointFragment(val productName: String) : Fragment()  {
 
     private fun onItemClick(pickUpPoint: PickUpPoint, view : View) {
         // view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-        Log.d("Debugger","${pickUpPoint.listMaraicher}")
+        Log.d("Debugger","${pickUpPoint}")
+        viewModel2.addProduct(this.productName, pickUpPoint.address.toString())
         //Toast.makeText(this,"${pickUpPoint}", Toast.LENGTH_LONG).show()
     }
 

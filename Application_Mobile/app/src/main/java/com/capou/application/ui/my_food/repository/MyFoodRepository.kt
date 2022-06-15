@@ -48,4 +48,29 @@ class MyFoodRepository {
             })
         }
     }
+
+    fun deleteMyFood(productName:String?,userId:String){
+        if (productName != null) {
+            val query = path.child(currentUser).child("products").child(productName).removeValue()
+
+        // delete for pick
+            val query2 = path.child(currentUser).child("point_ventes")
+            query2.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    Log.d("TAG", "onDataChange: ${snapshot}")
+                    for (result in snapshot.children){
+                        for (result2 in result.children){
+                            if(result2.value == productName)
+                                result2.ref.removeValue()
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.d("TAG", "onCancelled: ${error}")
+                }
+            })
+
+        }
+    }
 }

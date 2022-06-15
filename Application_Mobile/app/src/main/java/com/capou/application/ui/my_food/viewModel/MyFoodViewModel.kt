@@ -15,7 +15,11 @@ class MyFoodViewModel : ViewModel() {
 
     // Return the food list
     fun getMyFoodList(): MutableLiveData<ArrayList<AlimentPointVentes>> {
-        repository.getMyFoodList();
+        repository.getMyFoodList()
        return repository.myFoodList
+    }
+
+    fun deleteMyFood(productName:String?,userId:String){
+        repository.deleteMyFood(productName,userId)
     }
 }
