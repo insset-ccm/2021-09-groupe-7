@@ -40,7 +40,7 @@ class PickUpPointRepository {
                         }
                        // var message = result.child("ListsMaraichers").getValue(List::class.java)
 
-                         element.add(PickUpPoint(address,horairesList))
+                        element.add(PickUpPoint(address,horairesList))
                         Log.d("Debugg","${result}")
                     //Toast.makeText(context,"${result}",Toast.LENGTH_LONG).show()
                     }

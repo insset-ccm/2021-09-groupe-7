@@ -203,7 +203,7 @@ class HomeFragment : Fragment() {
 
     val showMarker = object : ValueEventListener {
         override fun onCancelled(error: DatabaseError) {
-           Toast.makeText(context, "Impossible de lire les données de la base", Toast.LENGTH_LONG).show()
+          // Toast.makeText(context, "Impossible de lire les données de la base", Toast.LENGTH_LONG).show()
         }
         //     @SuppressLint("LongLogTag")
         override fun onDataChange(dataSnapshot: DataSnapshot) {
