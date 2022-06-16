@@ -20,11 +20,12 @@ class AddProductRepository {
     private val auth = Firebase.auth
     private val databaseRef = Firebase.database.reference.child("utilisateurs")
     var userInfo = MutableLiveData<String?>()
+    var pickup = MutableLiveData<List<String?>>()
+    var element = ArrayList<String?>()
 
     fun getUserData(){
         var getUid = auth.currentUser?.uid.toString()
         //if(getUid.isNullOrEmpty()){
-            var key = databaseRef.child("iU4wZkaPRWb20CHRqn4f2fkgH7F3").key
         if(!getUid.isNullOrEmpty()){
             databaseRef.child(getUid).addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -40,9 +41,68 @@ class AddProductRepository {
                 }
             })
         }
-            Log.d("Debuger","${key}")
+
         //}
     }
+
+    fun getPickUp(){
+        var getUid = auth.currentUser?.uid.toString()
+        //if(getUid.isNullOrEmpty()){
+        if(!getUid.isNullOrEmpty()){
+            val query = Firebase.database.reference.child("demo_point_vente").child(getUid)
+            query.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    Log.d("Debug","${snapshot}")
+                   for(result in snapshot.children){
+                       val nameAdd = result.child("nomAd").getValue(String::class.java)
+                       val splitAddre =  nameAdd?.split(", France")
+                       var resulkt = splitAddre?.get(0)
+                       Log.d("TAGss", "onDataChange: ${resulkt}")
+                       element.add(resulkt)
+                   }
+                    pickup.postValue(element.toList())
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.d("Debug","${error.message}")
+                }
+            })
+
+
+        }
+
+        //}
+    }
+    fun addProductMarai(product:String,lieu:String = "default"){
+        var getUid = auth.currentUser?.uid.toString()
+        //  if(!getUid.isNullOrEmpty()){
+        val key = databaseRef.child(getUid).key
+        if(!getUid.isEmpty()){
+            val isKey = databaseRef.child(getUid).child("products").key
+            Log.d("TAG", "AddProduct: ${isKey}")
+            if( isKey == product){
+                databaseRef.child(getUid).child("products").setValue(product)
+            }
+            val defaultKey = databaseRef.child(getUid).child("products").child(product).push().key
+            databaseRef.child(getUid).child("products").child(product).child(defaultKey.toString()).setValue(lieu)
+
+            // Add Point de ventes
+
+            val isPoint = databaseRef.child(getUid).child("point_ventes").key
+            Log.d("TAG", "AddProduct: ${isPoint}")
+            if( isKey == product){
+                databaseRef.child(getUid).child("point_ventes").setValue(lieu)
+            }
+            val point = databaseRef.child(getUid).child("point_ventes").child(lieu).push().key
+            databaseRef.child(getUid).child("point_ventes").child(lieu).child(point.toString()).setValue(product)
+
+
+            val isPointEe = Firebase.database.reference.child("pickup_point").child(product).push().key
+            Firebase.database.reference.child("pickup_point").child(product).child(isPointEe.toString()).child("addresse").setValue(lieu)
+            }
+
+    }
+
 
 
     fun AddProduct(product:String,lieu:String = "default"){

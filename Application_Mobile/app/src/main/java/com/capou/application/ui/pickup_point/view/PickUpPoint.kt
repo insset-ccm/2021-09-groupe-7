@@ -40,7 +40,7 @@ class PickUpPoint : AppCompatActivity() {
         super.onStart()
         val getTitle:String = intent.getStringExtra("title").toString()
         Log.d("Details","${getTitle}")
-        viewModel.getPickUpPoint(this,getTitle).observe(this,{
+     /*   viewModel.getPickUpPoint(this,getTitle).observe(this,{
             Log.d("Details"," "+it)
             adapter.submitList(it)
             Log.d("deb","${it.isEmpty()}")
@@ -54,7 +54,7 @@ class PickUpPoint : AppCompatActivity() {
         }
 
         binding.recyclerPickupPoint.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        binding.recyclerPickupPoint.adapter = adapter
+        binding.recyclerPickupPoint.adapter = adapter*/
 
     }
 

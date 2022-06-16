@@ -16,7 +16,16 @@ class AddProductViewModel: ViewModel() {
      repository.getUserData()
      return repository.userInfo
   }
+
+    fun getListPick():MutableLiveData<List<String?>>{
+        repository.getPickUp()
+        return repository.pickup
+    }
     fun addProduct(product:String,lieu:String){
         repository.AddProduct(product,lieu)
+    }
+
+    fun addProductMarai(product:String,lieu:String){
+        repository.addProductMarai(product,lieu)
     }
 }

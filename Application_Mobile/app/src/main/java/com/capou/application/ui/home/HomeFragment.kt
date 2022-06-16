@@ -192,18 +192,18 @@ class HomeFragment : Fragment() {
                     MarkerOptions().position(driverLoc).title(locationLoggingNom)
                 mMap.addMarker(markerOptions)
                 mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f))
-                Toast.makeText(
+               /* Toast.makeText(
                     context,
                     "Locations accessed from the database",
                     Toast.LENGTH_LONG
-                ).show()
+                ).show()*/
             }
         }
     }
 
     val showMarker = object : ValueEventListener {
         override fun onCancelled(error: DatabaseError) {
-            Toast.makeText(context, "Impossible de lire les données de la base", Toast.LENGTH_LONG).show()
+          // Toast.makeText(context, "Impossible de lire les données de la base", Toast.LENGTH_LONG).show()
         }
         //     @SuppressLint("LongLogTag")
         override fun onDataChange(dataSnapshot: DataSnapshot) {

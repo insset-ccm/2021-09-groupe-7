@@ -24,6 +24,7 @@ class SignIn : AppCompatActivity() {
     private val TAG = SignIn::class.java.simpleName;
     private lateinit var viewModel : FirebaseAuthViewModel
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -64,6 +65,12 @@ class SignIn : AppCompatActivity() {
 
                     var checkSuccess = it.get("success")
                     if(checkSuccess == true) {
+                        var shared = getSharedPreferences("test", MODE_PRIVATE)
+                        with (shared.edit()) {
+                            putString("test",_authentification.currentUser?.uid.toString() )
+                            apply()
+                        }
+                        Log.d("TAG", "onCreateView: "+shared.getString("test","default"))
                         val intent = Intent(applicationContext, MainActivity::class.java)
                         startActivity(intent)
                     }

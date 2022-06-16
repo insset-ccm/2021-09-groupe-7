@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 
 
-
+/*
 data class DetailsProduct(
     @Expose
     @SerializedName("name")
@@ -44,4 +44,56 @@ data class Nutrition(
     @Expose
     @SerializedName("sugar")
     val sugar:String
+)*/
+
+
+
+
+
+data class DetailsProduct(
+    @Expose
+    @SerializedName("data")
+    val data : Data
 )
+
+data class Data(
+    @Expose
+    @SerializedName("aliments_info")
+    val aliments_info: AlimentInfo,
+
+
+    @Expose
+    @SerializedName("fr_nom")
+    val fr_nom:String,
+
+
+    @Expose
+    @SerializedName("description")
+    val description:String,
+
+
+    )
+
+data class AlimentInfo(
+    @Expose
+    @SerializedName("calorie")
+    val calorie: String,
+
+    @Expose
+    @SerializedName("proteine")
+    val proteine:String,
+
+    @Expose
+    @SerializedName("lipides")
+    val lipides:String,
+
+    @Expose
+    @SerializedName("glucides")
+    val glucides:String,
+
+    @Expose
+    @SerializedName("vitamines")
+    val vitamines:ArrayList<String>,
+
+)
+
