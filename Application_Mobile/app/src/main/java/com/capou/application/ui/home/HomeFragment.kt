@@ -1,50 +1,44 @@
 package com.capou.application.ui.home
 
-import android.annotation.SuppressLint
-import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
+import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.capou.application.R
 import com.capou.application.databinding.FragmentHomeBinding
-import com.capou.application.ui.details.DetailsFragment
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.GoogleMap.OnMarkerDragListener
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
-import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.io.IOException
 import java.util.*
-import kotlin.collections.ArrayList
+import com.google.android.gms.maps.model.LatLng
 
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeViewModel: HomeViewModel
-    private val auth = Firebase.auth
 
     private lateinit var mMap: GoogleMap
+
     private var dataBaseGetInst = FirebaseDatabase.getInstance()
     private lateinit var databaseRef: DatabaseReference
-    private var locationArrayList: ArrayList<LatLng>? = null
+    private val auth = Firebase.auth
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -80,14 +74,11 @@ class HomeFragment : Fragment() {
             mMap.addMarker(MarkerOptions().position(currentCity).title("Insset Saint Quentin"))
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentCity, 17F))
 
-
            setPoiClick(mMap)
-
 
            databaseRef = FirebaseDatabase.getInstance().getReference()
            val idCurrentUser = auth.currentUser?.uid.toString()
            val queryGetUser = databaseRef.child("utilisateurs").child(idCurrentUser)
-           Log.d("queroyGetUser", "${queryGetUser}")
 
                queryGetUser.addValueEventListener(object : ValueEventListener {
                    override fun onDataChange(snapshot: DataSnapshot) {
@@ -108,10 +99,58 @@ class HomeFragment : Fragment() {
                            })
                        }else if (typeUser == "Maraîcher"){
 
-
                            val pickupPointMaraicher = databaseRef.child("demo_point_vente").child(idCurrentUser)
                            pickupPointMaraicher.addValueEventListener(showMarker)
                            setMapLongClick(mMap)
+
+                               // Draggin Marker
+                               mMap.setOnMarkerDragListener(object : OnMarkerDragListener {
+                                   override fun onMarkerDragStart(marker: Marker) {
+                                       pickupPointMaraicher.removeValue()
+
+                                   }
+                                   override fun onMarkerDrag(marker: Marker) {
+                                     // pickupPointMaraicher.removeValue()
+
+                                   }
+                                   override fun onMarkerDragEnd(marker: Marker) {
+                                        marker.remove()
+
+                                       val newLatLng = LatLng(marker.position.latitude, marker.position.longitude)
+                                       // Initializing Geocoder
+                                       val mGeocoder = Geocoder(context, Locale.getDefault())
+                                       var addressString= ""
+
+                                       // Reverse-Geocoding starts
+                                       try {
+                                           val addressListDrag: List<Address> = mGeocoder.getFromLocation(marker.position!!.latitude, marker.position!!.longitude, 1)
+
+                                           if (addressListDrag != null && addressListDrag.isNotEmpty()) {
+
+                                               val addressDrag = addressListDrag[0]
+                                               val sb = StringBuilder()
+                                               for (i in 0 until addressDrag.maxAddressLineIndex) {
+                                                   sb.append(addressDrag.getAddressLine(i)).append("\n")
+                                               }
+
+                                               if (addressDrag.premises != null)
+                                                   sb.append(addressDrag.premises).append(", ")
+                                               sb.append(addressDrag.getAddressLine(0))
+                                               addressString = sb.toString()
+                                           }
+                                       } catch (e: IOException) {
+                                           Toast.makeText(context,"Connexion impossible à Geocoder", Toast.LENGTH_LONG).show()
+                                       }
+
+                                       mMap.addMarker(MarkerOptions().position(newLatLng).title(addressString).snippet("$typeUser"))
+                                       val idCurrentMara = auth.currentUser?.uid.toString()
+
+                                       val latlongAdst = LocationLogging(addressString,marker.position.latitude, marker.position.longitude)
+                                       val databaseRef = dataBaseGetInst.getReference("demo_point_vente").child(idCurrentMara)
+                                       val dataChild = databaseRef.push()
+                                       dataChild.setValue(latlongAdst)
+                                   }
+                               })
                        }
 
                    }
@@ -124,7 +163,7 @@ class HomeFragment : Fragment() {
 
     //Add marker
     private fun setMapLongClick(map: GoogleMap) {
-        mMap.setOnMapClickListener {
+        map.setOnMapClickListener {
             val lat = it.latitude
             val lng = it.longitude
 
@@ -174,7 +213,6 @@ class HomeFragment : Fragment() {
     }
 
     // show data
-
     private fun displyMarker(dataSnapshot: DataSnapshot){
         for ( result in dataSnapshot.children) {
 
@@ -189,7 +227,7 @@ class HomeFragment : Fragment() {
                 val driverLoc = LatLng(driverLat, driverLong)
 
                 val markerOptions =
-                    MarkerOptions().position(driverLoc).title(locationLoggingNom)
+                    MarkerOptions().position(driverLoc).title(locationLoggingNom).zIndex(0.0f).draggable(true)
                 mMap.addMarker(markerOptions)
                 mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f))
                 Toast.makeText(
@@ -197,6 +235,7 @@ class HomeFragment : Fragment() {
                     "Locations accessed from the database",
                     Toast.LENGTH_LONG
                 ).show()
+
             }
         }
     }
